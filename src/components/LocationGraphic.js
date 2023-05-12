@@ -1,6 +1,7 @@
 import { useContext } from "react";
-import { useMap } from "react-leaflet";
+import { useMap, Marker, Tooltip } from "react-leaflet";
 import LocationContext from "../store/location-context";
+import { circleIcon } from "../assets/circleIcon";
 
 const Location = () => {
   console.log("render location");
@@ -15,7 +16,15 @@ const Location = () => {
     easeLinearity: 0.75
   });
 
-  return null;
+  return (
+    <Marker position={ctx.coordinates} alt="position marker" icon={circleIcon}>
+      {ctx.weather && (
+        <Tooltip permanent direction="top" offset={[-50, 50]}>
+          {ctx.weather}
+        </Tooltip>
+      )}
+    </Marker>
+  );
 };
 
 export default Location;
