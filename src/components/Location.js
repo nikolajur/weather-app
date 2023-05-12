@@ -15,30 +15,6 @@ const Location = () => {
     easeLinearity: 0.75
   });
 
-  /*   useEffect(() => {
-    map.locate();
-    console.log("map locate");
-    map.on("locationfound", (location) => {
-      console.log("location found");
-      console.log(location.latlng);
-      map.flyTo([location.latlng.lat, location.latlng.lng], 12);
-      ctx.updateLocation({ lat: location.latlng.lat, lng: location.latlng.lng });
-    });
-    map.on("locationerror", (error) => console.log(error));
-  
-  }, [map, ctx]); */
-
-  /* useMapEvents({
-    locationfound: (location) => {
-      console.log("location found:", location.latlng);
-      ctx.updateLocation({ lat: location.latlng.lat, lng: location.latlng.lng }, true);
-      
-    },
-    locationerror: (error) => {
-      console.log(error);
-    }
-  }); */
-
   return null;
 };
 

@@ -21,6 +21,5 @@ export const getCurrentWeather = async (lat, lng) => {
   };
 
   const data = currentWeather();
-  console.log(data);
   return data;
 };

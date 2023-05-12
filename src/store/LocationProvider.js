@@ -7,27 +7,30 @@ const DEFAULT_LOCATION_STATE = {
     lat: null,
     lng: null
   },
-  isFromDevice: false,
+  isFromDevice: null,
   weather: null,
+  isLoading: null,
+  error: null,
   updateLocation: () => {},
   fetchWeather: () => {}
 };
 
 const LocationProvider = ({ children }) => {
   console.log("render location provider");
-  const [currentLocation, setCurrentLocation] = useState(DEFAULT_LOCATION_STATE);
-  /* const [weather, setWeather] = useState(null); */
-  const [isLoading, setIsLoading] = useState(null);
-  const [error, setError] = useState(null);
+  const [locationInfo, setLocationInfo] = useState(DEFAULT_LOCATION_STATE);
+  const [positionIsLoading, setPositionIsLoading] = useState(null);
+  const [weatherIsLoading, setWeatherIsLoading] = useState(null);
+  const [positionError, setPositionError] = useState(null);
+  const [weatherError, setWeatherError] = useState(null);
 
-  console.log("ctx coordinates");
-  console.log(currentLocation.coordinates);
+  /* console.log("ctx coordinates");
+  console.log(locationInfo.coordinates);
   console.log("ctx weather");
-  console.log(currentLocation.weather);
+  console.log(locationInfo.weather); */
+
   // weather data
   const fetchWeatherAPI = async (lat, lng) => {
-    setIsLoading(true);
-    setError(false);
+    setWeatherIsLoading(true);
     try {
       console.log("called get weather from ctx");
       // console.log(lat, lng);
@@ -36,13 +39,14 @@ const LocationProvider = ({ children }) => {
       if (data) {
         console.log("context response");
         console.log(data);
-        setCurrentLocation((prev) => ({ ...prev, weather: data }));
-        setIsLoading(false);
+        setLocationInfo((prev) => ({ ...prev, weather: data }));
+        setWeatherIsLoading(false);
+        setWeatherError(false);
       }
     } catch (error) {
       console.log(error);
-      setError(true);
-      setIsLoading(false);
+      setWeatherIsLoading(false);
+      setWeatherError(true);
     }
   };
 
@@ -50,37 +54,44 @@ const LocationProvider = ({ children }) => {
   const updateLocation = (coordinates, fromGPS) => {
     //({lat: lat, lng: lng}, true/false)
     console.log("update location in ctx");
-    setCurrentLocation((prev) => ({ ...prev, coordinates: coordinates, isFromDevice: fromGPS }));
-    // fetchWeatherAPI(coordinates.lat, coordinates.lng);
+    setLocationInfo((prev) => ({ ...prev, coordinates: coordinates, isFromDevice: fromGPS }));
   };
 
   // po inicializaci se zeptá na polohu
   useEffect(() => {
     console.log("ctx use effect navigator");
+    setPositionIsLoading(true);
     navigator.geolocation.getCurrentPosition(
       (position) => {
         updateLocation({ lat: position.coords.latitude, lng: position.coords.longitude }, true);
+        setPositionIsLoading(false);
+        setPositionError(false);
       },
       (error) => {
         console.log(error);
-      }
+        setPositionIsLoading(false);
+        setPositionError(true);
+      },
+      { timeout: 30000 }
     );
   }, []);
 
   // když se změní poloha, fetch weather
   useEffect(() => {
-    if (currentLocation.coordinates.lat) {
+    if (locationInfo.coordinates.lat) {
       console.log("ctx use effect fetch weather");
-      fetchWeatherAPI(currentLocation.coordinates.lat, currentLocation.coordinates.lng);
+      fetchWeatherAPI(locationInfo.coordinates.lat, locationInfo.coordinates.lng);
     }
-  }, [currentLocation.coordinates]);
+  }, [locationInfo.coordinates]);
 
   return (
     <LocationContext.Provider
       value={{
-        coordinates: currentLocation.coordinates,
-        isFromDevice: currentLocation.isFromDevice,
-        weather: currentLocation.weather,
+        coordinates: locationInfo.coordinates,
+        isFromDevice: locationInfo.isFromDevice,
+        weather: locationInfo.weather,
+        isLoading: { position: positionIsLoading, weather: weatherIsLoading },
+        error: { position: positionError, weather: weatherError },
         updateLocation: updateLocation,
         fetchWeatherAPI: fetchWeatherAPI
       }}

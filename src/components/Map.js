@@ -3,6 +3,7 @@ import LocationContext from "../store/location-context";
 import { MapContainer, TileLayer, Marker, Tooltip } from "react-leaflet";
 import Location from "./Location";
 import { defaultIcon } from "../assets/defaultIcon";
+import { circleIcon } from "../assets/circleIcon";
 import "leaflet/dist/leaflet.css";
 
 const Map = () => {
@@ -25,7 +26,8 @@ const Map = () => {
       {ctx.coordinates.lat && (
         <>
           <Location />
-          <Marker position={ctx.coordinates} alt="position marker" icon={defaultIcon}>
+          {/*  <Marker position={ctx.coordinates} alt="position marker" icon={defaultIcon} /> */}
+          <Marker position={ctx.coordinates} alt="position marker" icon={circleIcon}>
             {ctx.weather && (
               <Tooltip permanent direction="top" offset={[-50, 50]}>
                 {ctx.weather}
