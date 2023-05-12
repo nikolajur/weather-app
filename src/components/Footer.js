@@ -1,14 +1,14 @@
-import React /* , { useContext }  */ from "react";
-// import LocationContext from "../store/location-context";
+import React, { useContext } from "react";
+import LocationContext from "../store/location-context";
 
 const Footer = () => {
-  // const ctx = useContext(LocationContext);
+  const ctx = useContext(LocationContext);
 
   return (
     <>
-      <p>Footer</p>
-      {/*  {ctx.isLoading.position && <div>Position is loading</div>}
-      {ctx.isLoading.weather && <div>Weather is loading</div>} */}
+      <footer>Footer</footer>
+      {ctx.isLoading.position && <div>Waiting for position...</div>}
+      {ctx.isLoading.weather && <div>Weather is loading</div>}
     </>
   );
 };

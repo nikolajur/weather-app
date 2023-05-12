@@ -9,7 +9,7 @@ const LocationContext = React.createContext({
   weather: null,
   isLoading: null,
   error: null,
-  updateLocation: () => {},
+  getCoordinates: () => {},
   fetchWeatherAPI: () => {}
 });
 

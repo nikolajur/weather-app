@@ -11,7 +11,7 @@ const DEFAULT_LOCATION_STATE = {
   weather: null,
   isLoading: null,
   error: null,
-  updateLocation: () => {},
+  getCoordinatates: () => {},
   fetchWeather: () => {}
 };
 
@@ -50,16 +50,15 @@ const LocationProvider = ({ children }) => {
     }
   };
 
-  // location
+  // update location info state
   const updateLocation = (coordinates, fromGPS) => {
     //({lat: lat, lng: lng}, true/false)
     console.log("update location in ctx");
     setLocationInfo((prev) => ({ ...prev, coordinates: coordinates, isFromDevice: fromGPS }));
   };
 
-  // po inicializaci se zeptá na polohu
-  useEffect(() => {
-    console.log("ctx use effect navigator");
+  // get coordinates from device
+  const getCoordinatates = () => {
     setPositionIsLoading(true);
     navigator.geolocation.getCurrentPosition(
       (position) => {
@@ -74,6 +73,12 @@ const LocationProvider = ({ children }) => {
       },
       { timeout: 30000 }
     );
+  };
+
+  // po inicializaci se zeptá na polohu
+  useEffect(() => {
+    console.log("ctx use effect navigator");
+    getCoordinatates();
   }, []);
 
   // když se změní poloha, fetch weather
@@ -92,7 +97,7 @@ const LocationProvider = ({ children }) => {
         weather: locationInfo.weather,
         isLoading: { position: positionIsLoading, weather: weatherIsLoading },
         error: { position: positionError, weather: weatherError },
-        updateLocation: updateLocation,
+        getCoordinates: getCoordinatates,
         fetchWeatherAPI: fetchWeatherAPI
       }}
     >

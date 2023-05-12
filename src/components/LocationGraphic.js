@@ -20,7 +20,11 @@ const Location = () => {
   return (
     <Marker position={ctx.coordinates} alt="position marker" icon={circleIcon}>
       {ctx.weather && (
-        <Tooltip permanent direction="top" offset={[0, 16]}>
+        <Tooltip
+          permanent
+          direction="top"
+          position={{ lat: `${ctx.coordinates.lat + 0.005}`, lng: ctx.coordinates.lng }}
+        >
           {/*  {ctx.weather.weather[0].main} */}
           <WeatherGraphic />
         </Tooltip>
