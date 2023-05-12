@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { useMap, Marker, Tooltip } from "react-leaflet";
 import LocationContext from "../store/location-context";
 import { circleIcon } from "../assets/circleIcon";
+import WeatherGraphic from "./WeatherGraphic";
 
 const Location = () => {
   console.log("render location");
@@ -10,7 +11,7 @@ const Location = () => {
   const map = useMap();
   /* console.log(map.getCenter());
   console.log(map.getZoom()); */
-  map.flyTo([ctx.coordinates.lat, ctx.coordinates.lng], 12, {
+  map.flyTo([ctx.coordinates.lat, ctx.coordinates.lng], 11, {
     animate: true,
     duration: 1,
     easeLinearity: 0.75
@@ -19,8 +20,9 @@ const Location = () => {
   return (
     <Marker position={ctx.coordinates} alt="position marker" icon={circleIcon}>
       {ctx.weather && (
-        <Tooltip permanent direction="top" offset={[-50, 50]}>
-          {ctx.weather}
+        <Tooltip permanent direction="top" offset={[0, 16]}>
+          {/*  {ctx.weather.weather[0].main} */}
+          <WeatherGraphic />
         </Tooltip>
       )}
     </Marker>

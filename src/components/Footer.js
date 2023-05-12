@@ -1,5 +1,5 @@
 import React /* , { useContext }  */ from "react";
-import LocationContext from "../store/location-context";
+// import LocationContext from "../store/location-context";
 
 const Footer = () => {
   // const ctx = useContext(LocationContext);

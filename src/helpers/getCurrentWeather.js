@@ -9,11 +9,10 @@ export const getCurrentWeather = async (lat, lng) => {
   const currentWeather = async () => {
     try {
       const response = await axios.get(url);
-      /*   console.log(response.data.name);
-      console.log(response.data.weather[0].main);
-      console.log(response.data.main); */
 
-      return response.data.weather[0].main;
+      // return response.data.weather[0].main;
+      return response.data;
+      // console.log(response.data);
     } catch (error) {
       console.log(error);
       throw new Error(error);
