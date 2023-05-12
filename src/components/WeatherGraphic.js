@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import LocationContext from "../store/location-context";
+import WeatherIcon from "./WeatherIcon";
 
 const WeatherGraphic = () => {
   const ctx = useContext(LocationContext);
@@ -7,7 +8,7 @@ const WeatherGraphic = () => {
     <>
       <h1>{ctx.weather.name}</h1>
       <h2>{ctx.weather.weather[0].description}</h2>
-      <p>{ctx.weather.weather[0].icon}</p>
+      <WeatherIcon icon={ctx.weather.weather[0].icon} />
       <p>time: {new Date(ctx.weather.dt * 1000).toLocaleString()}</p>
       <p>temperature: {Math.round(ctx.weather.main.temp)}°C</p>
       <p>feels like: {Math.round(ctx.weather.main.feels_like)}°C</p>

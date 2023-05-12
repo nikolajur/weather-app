@@ -9,6 +9,12 @@ const Footer = () => {
       <footer>Footer</footer>
       {ctx.isLoading.position && <div>Waiting for position...</div>}
       {ctx.isLoading.weather && <div>Weather is loading</div>}
+      <p>
+        Icons by{" "}
+        <a target="_blank" href="https://icons8.com" rel="noreferrer">
+          Icons8
+        </a>
+      </p>
     </>
   );
 };

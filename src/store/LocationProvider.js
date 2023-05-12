@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import LocationContext from "./location-context";
 import { getCurrentWeather } from "../helpers/getCurrentWeather";
 
@@ -58,7 +58,7 @@ const LocationProvider = ({ children }) => {
   };
 
   // get coordinates from device
-  const getCoordinatates = () => {
+  const getCoordinatates = useCallback(() => {
     setPositionIsLoading(true);
     navigator.geolocation.getCurrentPosition(
       (position) => {
@@ -73,13 +73,13 @@ const LocationProvider = ({ children }) => {
       },
       { timeout: 30000 }
     );
-  };
+  }, []);
 
   // po inicializaci se zeptá na polohu
   useEffect(() => {
     console.log("ctx use effect navigator");
     getCoordinatates();
-  }, []);
+  }, [getCoordinatates]);
 
   // když se změní poloha, fetch weather
   useEffect(() => {
