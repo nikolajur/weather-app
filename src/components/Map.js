@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import LocationContext from "../store/location-context";
 import { MapContainer, TileLayer } from "react-leaflet";
-import LocationGraphic from "./LocationGraphic";
+import LocationGraphics from "./LocationGraphics";
 import "leaflet/dist/leaflet.css";
 
 const Map = () => {
@@ -21,9 +21,9 @@ const Map = () => {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
 
-      {ctx.coordinates.lat && (
+      {ctx.coordinates && (
         <>
-          <LocationGraphic />
+          <LocationGraphics />
         </>
       )}
     </MapContainer>

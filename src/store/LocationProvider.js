@@ -3,10 +3,7 @@ import LocationContext from "./location-context";
 import { getCurrentWeather } from "../helpers/getCurrentWeather";
 
 const DEFAULT_LOCATION_STATE = {
-  coordinates: {
-    lat: null,
-    lng: null
-  },
+  coordinates: null,
   isFromDevice: null,
   weather: null,
   isLoading: null,
@@ -29,7 +26,7 @@ const LocationProvider = ({ children }) => {
   console.log(locationInfo.weather); */
 
   // weather data
-  const fetchWeatherAPI = async (lat, lng) => {
+  const fetchWeatherAPI = useCallback(async (lat, lng) => {
     setWeatherIsLoading(true);
     try {
       console.log("called get weather from ctx");
@@ -39,7 +36,7 @@ const LocationProvider = ({ children }) => {
       if (data) {
         console.log("context response");
         console.log(data);
-        setLocationInfo((prev) => ({ ...prev, weather: data }));
+        setLocationInfo((prev) => ({ ...prev, weather: data, isFromDevice: true }));
         setWeatherIsLoading(false);
         setWeatherError(false);
       }
@@ -48,7 +45,7 @@ const LocationProvider = ({ children }) => {
       setWeatherIsLoading(false);
       setWeatherError(true);
     }
-  };
+  }, []);
 
   // update location info state
   const updateLocation = (coordinates, fromGPS) => {
@@ -68,26 +65,27 @@ const LocationProvider = ({ children }) => {
       },
       (error) => {
         console.log(error);
+        setLocationInfo((prev) => ({ ...prev, isFromDevice: false, coordinates: null }));
         setPositionIsLoading(false);
         setPositionError(true);
       },
-      { timeout: 30000 }
+      { timeout: 30000, maximumAge: 0 }
     );
   }, []);
 
   // po inicializaci se zeptá na polohu
-  useEffect(() => {
+  /*  useEffect(() => {
     console.log("ctx use effect navigator");
     getCoordinatates();
-  }, [getCoordinatates]);
+  }, [getCoordinatates]); */
 
   // když se změní poloha, fetch weather
   useEffect(() => {
-    if (locationInfo.coordinates.lat) {
+    if (locationInfo.coordinates) {
       console.log("ctx use effect fetch weather");
       fetchWeatherAPI(locationInfo.coordinates.lat, locationInfo.coordinates.lng);
     }
-  }, [locationInfo.coordinates]);
+  }, [locationInfo.coordinates, fetchWeatherAPI]);
 
   return (
     <LocationContext.Provider

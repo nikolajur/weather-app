@@ -1,10 +1,7 @@
 import React from "react";
 
 const LocationContext = React.createContext({
-  coordinates: {
-    lat: null,
-    lng: null
-  },
+  coordinates: null,
   isFromDevice: false,
   weather: null,
   isLoading: null,

@@ -3,70 +3,60 @@ import React from "react";
 
 const WeatherIcon = ({ icon }) => {
   let weatherIconSrc;
-  let weatherIconAlt;
   console.log(icon);
   switch (icon) {
     case "01d":
-      weatherIconSrc = "https://img.icons8.com/sf-regular/48/000000/sun.png";
-      weatherIconAlt = "sun";
+      weatherIconSrc = "sun.png";
       break;
     case "01n":
-      weatherIconSrc = "https://img.icons8.com/sf-regular/48/000000/bright-moon.png";
-      weatherIconAlt = "bright-moon";
+      weatherIconSrc = "bright-moon.png";
       break;
     case "02d":
-      weatherIconSrc = "https://img.icons8.com/sf-regular/48/000000/partly-cloudy-day.png";
-      weatherIconAlt = "partly-cloudy-day";
+      weatherIconSrc = "partly-cloudy-day.png";
       break;
     case "02n":
-      weatherIconSrc = "https://img.icons8.com/sf-regular/48/000000/partly-cloudy-night.png";
-      weatherIconAlt = "partly-cloudy-night";
+      weatherIconSrc = "partly-cloudy-night.png";
       break;
     case "03d":
     case "03n":
-      weatherIconSrc = "https://img.icons8.com/sf-regular/48/000000/clouds.png";
-      weatherIconAlt = "clouds";
+      weatherIconSrc = "clouds.png";
       break;
     case "04d":
     case "04n":
-      weatherIconSrc = "https://img.icons8.com/sf-regular/48/000000/cloud.png";
-      weatherIconAlt = "cloud";
+      weatherIconSrc = "cloud.png";
       break;
     case "09d":
     case "09n":
-      weatherIconSrc = "https://img.icons8.com/sf-regular/48/000000/rain.png";
-      weatherIconAlt = "rain";
+      weatherIconSrc = "rain.png";
       break;
     case "10d":
     case "10n":
-      weatherIconSrc = "https://img.icons8.com/sf-regular/48/000000/umbrella.png";
-      weatherIconAlt = "umbrella";
+      weatherIconSrc = "rainy-weather.png";
       break;
     case "11d":
     case "11n":
-      weatherIconSrc = "https://img.icons8.com/sf-regular/48/000000/storm.png";
-      weatherIconAlt = "storm";
+      weatherIconSrc = "storm.png";
       break;
     case "13d":
     case "13n":
-      weatherIconSrc = "https://img.icons8.com/sf-regular/48/000000/snow.png";
-      weatherIconAlt = "snow";
+      weatherIconSrc = "snow.png";
       break;
     case "50d":
-      weatherIconSrc = "https://img.icons8.com/sf-regular/48/000000/fog-day.png";
-      weatherIconAlt = "fog-day";
+      weatherIconSrc = "fog-day.png";
       break;
     case "50n":
-      weatherIconSrc = "https://img.icons8.com/sf-regular/48/000000/fog-night.png";
-      weatherIconAlt = "fog-night";
+      weatherIconSrc = "fog-night.png";
       break;
-
     default:
-      weatherIconSrc = "https://img.icons8.com/sf-regular/48/000000/thermometer.png";
-      weatherIconAlt = "weather-icon";
+      weatherIconSrc = "thermometer.png";
   }
+
   return (
-    <img src={weatherIconSrc} alt={weatherIconAlt} style={{ width: "48px", height: "48px" }} />
+    <img
+      src={`https://img.icons8.com/sf-regular/48/000000/${weatherIconSrc}`}
+      alt="weather-icon"
+      style={{ width: "48px", height: "48px" }}
+    />
   );
 };
 

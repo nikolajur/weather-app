@@ -1,7 +1,16 @@
 import React from "react";
 
 const Header = () => {
-  return <div>Header</div>;
+  return (
+    <div className="header">
+      <img
+        className="header__icon"
+        src="https://img.icons8.com/ios/50/marker-sun--v1.png"
+        alt="app-icon"
+      />
+      <p>Current Weather Info</p>
+    </div>
+  );
 };
 
 export default Header;
