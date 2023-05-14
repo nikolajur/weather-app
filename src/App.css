@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -7,11 +8,20 @@
 body {
   width: 100%;
   height: 100vh;
-  padding: 1.75rem;
+  padding: 1.5rem;
+  font-family: "Lato", sans-serif;
   background-color: darkblue;
 }
 
 #root {
+  height: 100%;
+}
+
+.app {
+  display: flex;
+
+  flex-direction: column;
+  width: 100%;
   height: 100%;
 }
 
@@ -85,13 +95,19 @@ body {
 .leaflet-container {
   width: 100%;
   min-height: 30vh;
+  flex-grow: 1;
+}
+
+.content {
+  min-height: 9rem;
+  margin-bottom: 0.5rem;
 }
 
 .weather,
 .loading {
+  height: 100%;
   width: 100%;
   text-align: center;
-  margin-bottom: 0.5rem;
   color: white;
   /* height: 20vh; */
 }
@@ -117,11 +133,12 @@ body {
 .weather__description-icon {
   height: 2rem;
   width: auto;
-  padding: 0 0.25rem;
+  margin: 0.25rem;
 }
 
 .weather__property {
   font-size: 1rem;
+  /* line-height: 1.25; */
 }
 
 .weather__property-value {
@@ -129,6 +146,14 @@ body {
 }
 
 footer {
+  color: white;
+  text-align: center;
+  font-size: 0.75rem;
+  margin-top: 1rem;
+  line-height: 1.5;
+}
+
+footer a:visited {
   color: white;
 }
 
