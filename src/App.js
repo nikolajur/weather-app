@@ -20,7 +20,9 @@ function App() {
     <div className="App">
       <Header />
       <Search />
-      {(ctx.isLoading.position || ctx.isLoading.weather) && <p>Waiting for data...</p>}
+      {(ctx.isLoading.position || ctx.isLoading.weather) && (
+        <p className="loading">Waiting for data...</p>
+      )}
 
       {ctx.weather && <WeatherGraphics />}
       <Map />

@@ -6,15 +6,29 @@ const WeatherGraphics = () => {
   const ctx = useContext(LocationContext);
   return (
     <div className="weather">
-      <h1>{ctx.weather.name}</h1>
-      <h2>{ctx.weather.weather[0].description}</h2>
-      <WeatherIcon icon={ctx.weather.weather[0].icon} />
-      <p>time: {new Date(ctx.weather.dt * 1000).toLocaleString()}</p>
-      <p>temperature: {Math.round(ctx.weather.main.temp)}°C</p>
-      <p>feels like: {Math.round(ctx.weather.main.feels_like)}°C</p>
-      <p>humidity: {Math.round(ctx.weather.main.humidity)} %</p>
+      <h1 className="weather__location-name">{ctx.weather.name}</h1>
+      <div className="weather__description">
+        <h2 className="weather__description-text">{ctx.weather.weather[0].description}</h2>
+        <WeatherIcon icon={ctx.weather.weather[0].icon} />
+      </div>
+      {/* <p>time: {new Date(ctx.weather.dt * 1000).toLocaleString()}</p> */}
+      <p className="weather__property">
+        temperature:
+        <span className="weather__property-value">{Math.round(ctx.weather.main.temp)}°C</span>{" "}
+      </p>
+      <p className="weather__property">
+        feels like:{" "}
+        <span className="weather__property-value">{Math.round(ctx.weather.main.feels_like)}°C</span>
+      </p>
+      <p className="weather__property">
+        humidity:{" "}
+        <span className="weather__property-value">{Math.round(ctx.weather.main.humidity)} %</span>
+      </p>
       {/* <p>cloudiness: {Math.round(ctx.weather.clouds.all)} %</p> */}
-      <p>wind speed: {Math.round(ctx.weather.wind.speed)} km/h</p>
+      <p>
+        wind speed:{" "}
+        <span className="weather__property-value">{Math.round(ctx.weather.wind.speed)} km/h</span>
+      </p>
     </div>
   );
 };

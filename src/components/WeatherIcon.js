@@ -53,9 +53,10 @@ const WeatherIcon = ({ icon }) => {
 
   return (
     <img
-      src={`https://img.icons8.com/sf-regular/48/000000/${weatherIconSrc}`}
+      className="weather__description-icon"
+      src={`https://img.icons8.com/sf-regular/48/ffffff/${weatherIconSrc}`}
       alt="weather-icon"
-      style={{ width: "48px", height: "48px" }}
+      /*  style={{ width: "48px", height: "48px" }} */
     />
   );
 };
