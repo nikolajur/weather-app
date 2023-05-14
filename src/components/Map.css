@@ -1,0 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
+
+.leaflet-container {
+  width: 100%;
+  min-height: 30vh;
+  flex-grow: 1;
+  font-family: "Lato", sans-serif !important;
+}
+
+/* .leaflet-bar,
+.leaflet-touch, */
+.leaflet-control-zoom,
+.leaflet-control-layers {
+  border: none !important;
+  border-radius: 0.25rem !important;
+  font: inherit;
+}
+
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out {
+  border-radius: 0.25rem !important;
+  width: 1.75rem !important;
+  height: 1.75rem !important;
+  line-height: 1.75rem !important;
+}
+
+.leaflet-control-layers-toggle {
+  border-radius: 0.25rem !important;
+  width: 2.25rem !important;
+  height: 2.25rem !important;
+  background-image: url("https://img.icons8.com/sf-ultralight/50/000000/layers.png") !important;
+  background-size: 2.25rem 2.25rem !important;
+}

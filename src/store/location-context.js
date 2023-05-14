@@ -4,8 +4,8 @@ const LocationContext = React.createContext({
   coordinates: null,
   isFromDevice: false,
   weather: null,
-  isLoading: null,
-  error: null,
+  isLoading: { position: null, weather: null },
+  error: { position: null, weather: null },
   getCoordinates: () => {},
   fetchWeatherAPI: () => {}
 });

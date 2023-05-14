@@ -6,8 +6,8 @@ const DEFAULT_LOCATION_STATE = {
   coordinates: null,
   isFromDevice: null,
   weather: null,
-  isLoading: null,
-  error: null,
+  isLoading: { position: null, weather: null },
+  error: { position: null, weather: null },
   getCoordinatates: () => {},
   fetchWeather: () => {}
 };
