@@ -11,8 +11,15 @@ const SearchForm = () => {
     }
   }, [ctx.isFromDevice]);
 
+  const onFormSubmit = (e) => {
+    e.preventDefault();
+    console.log("get city search");
+    const searchedText = inputRef.current?.value;
+    ctx.getCoordinates("search", searchedText);
+  };
+
   return (
-    <form className="search-location-form">
+    <form className="search-location-form" onSubmit={onFormSubmit}>
       <input
         className="search-location-form__input"
         ref={inputRef}

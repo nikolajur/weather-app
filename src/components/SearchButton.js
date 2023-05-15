@@ -5,7 +5,8 @@ const SearchButton = () => {
   const ctx = useContext(LocationContext);
 
   const getCoordinatates = () => {
-    ctx.getCoordinates();
+    ctx.getCoordinates("device");
+    console.log("position button clicked");
   };
   return (
     <button className="search-position-btn" onClick={getCoordinatates}>

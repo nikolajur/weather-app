@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useCallback } from "react";
 import LocationContext from "./location-context";
 import { getCurrentWeather } from "../helpers/getCurrentWeather";
+import { getCityCoordinates } from "../helpers/getCityCoodrinates";
+import { type } from "@testing-library/user-event/dist/type";
 
 const DEFAULT_LOCATION_STATE = {
   coordinates: null,
@@ -47,37 +49,62 @@ const LocationProvider = ({ children }) => {
     }
   }, []);
 
-  // update location info state
-  const updateLocation = (coordinates, fromGPS) => {
-    //({lat: lat, lng: lng}, true/false)
-    console.log("update location in ctx");
-    setLocationInfo((prev) => ({ ...prev, coordinates: coordinates, isFromDevice: fromGPS }));
+  const onPositionFound = (position, fromGPS) => {
+    //updateLocation({ lat: position.coords.latitude, lng: position.coords.longitude }, true);
+    setLocationInfo((prev) => ({
+      ...prev,
+      coordinates: position,
+      /*  { lat: position.coords.latitude, lng: position.coords.longitude }, */
+      isFromDevice: fromGPS
+    }));
+    setPositionIsLoading(false);
+    setPositionError(false);
+  };
+  const onPositionError = (error) => {
+    console.log(error);
+    setLocationInfo((prev) => ({ ...prev, isFromDevice: false, coordinates: null }));
+    setPositionIsLoading(false);
+    setPositionError(true);
   };
 
   // get coordinates from device
-  const getCoordinatates = useCallback(() => {
+  const getCoordinatates = useCallback(async (method, searchedText = null) => {
     setPositionIsLoading(true);
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        updateLocation({ lat: position.coords.latitude, lng: position.coords.longitude }, true);
+    if (method === "device") {
+      console.log("method device");
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          // console.log(position.coords.latitude);
+          onPositionFound({ lat: position.coords.latitude, lng: position.coords.longitude }, true);
+        },
+        (error) => {
+          onPositionError(error);
+        },
+        { timeout: 30000, maximumAge: 0 }
+      );
+    }
+    if (method === "search") {
+      console.log("ahoj ze search");
+      if (searchedText) {
+        console.log(searchedText);
+        try {
+          const data = await getCityCoordinates(searchedText);
+          console.log(data.length);
+          if (data.length === 1) {
+            onPositionFound({ lat: data[0].lat, lng: data[0].lon }, false);
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        console.log("napis jmeno");
         setPositionIsLoading(false);
-        setPositionError(false);
-      },
-      (error) => {
-        console.log(error);
-        setLocationInfo((prev) => ({ ...prev, isFromDevice: false, coordinates: null }));
-        setPositionIsLoading(false);
-        setPositionError(true);
-      },
-      { timeout: 30000, maximumAge: 0 }
-    );
+      }
+      //funkce
+    } else {
+      return;
+    }
   }, []);
-
-  // po inicializaci se zeptá na polohu
-  /*  useEffect(() => {
-    console.log("ctx use effect navigator");
-    getCoordinatates();
-  }, [getCoordinatates]); */
 
   // když se změní poloha, fetch weather
   useEffect(() => {

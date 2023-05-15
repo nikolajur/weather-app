@@ -4,7 +4,7 @@ import WeatherIcon from "./WeatherIcon";
 
 const WeatherGraphics = () => {
   const ctx = useContext(LocationContext);
-  console.log(ctx.weather);
+  // console.log(ctx.weather);
   return (
     <div className="weather">
       <div className="weather__location">
