@@ -2,9 +2,10 @@
 
 .leaflet-container {
   width: 100%;
-  min-height: 30vh;
+  min-height: 35vh;
   flex-grow: 1;
   font-family: "Lato", sans-serif !important;
+  background-color: white !important;
 }
 
 /* .leaflet-bar,

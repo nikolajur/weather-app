@@ -11,7 +11,7 @@ const LocationGraphics = () => {
   const map = useMap();
   /* console.log(map.getCenter());
   console.log(map.getZoom()); */
-  map.flyTo([ctx.coordinates.lat, ctx.coordinates.lng], 11, {
+  map.flyTo([ctx.coordinates.lat, ctx.coordinates.lng], 12, {
     animate: true,
     duration: 1,
     easeLinearity: 0.75
