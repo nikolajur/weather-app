@@ -2,7 +2,6 @@ import React, { useState, useEffect, useCallback } from "react";
 import LocationContext from "./location-context";
 import { getCurrentWeather } from "../helpers/getCurrentWeather";
 import { getCityCoordinates } from "../helpers/getCityCoodrinates";
-import { type } from "@testing-library/user-event/dist/type";
 
 const DEFAULT_LOCATION_STATE = {
   coordinates: null,
@@ -21,11 +20,6 @@ const LocationProvider = ({ children }) => {
   const [weatherIsLoading, setWeatherIsLoading] = useState(null);
   const [positionError, setPositionError] = useState(null);
   const [weatherError, setWeatherError] = useState(null);
-
-  /* console.log("ctx coordinates");
-  console.log(locationInfo.coordinates);
-  console.log("ctx weather");
-  console.log(locationInfo.weather); */
 
   // weather data
   const fetchWeatherAPI = useCallback(async (lat, lng) => {
@@ -93,6 +87,13 @@ const LocationProvider = ({ children }) => {
           if (data.length === 1) {
             onPositionFound({ lat: data[0].lat, lng: data[0].lon }, false);
           }
+          if (data.length > 1) {
+            const coordinatesArray = data.map((city) => {
+              return { /*  name: city.name,  */ lat: city.lat, lng: city.lon };
+            });
+            console.log(coordinatesArray);
+            onPositionFound(coordinatesArray, false);
+          }
         } catch (error) {
           console.log(error);
         }
@@ -106,13 +107,17 @@ const LocationProvider = ({ children }) => {
     }
   }, []);
 
-  // když se změní poloha, fetch weather
   useEffect(() => {
+    console.log(locationInfo);
+  }, [locationInfo]);
+
+  // když se změní poloha, fetch weather
+  /* useEffect(() => {
     if (locationInfo.coordinates) {
       console.log("ctx use effect fetch weather");
       fetchWeatherAPI(locationInfo.coordinates.lat, locationInfo.coordinates.lng);
     }
-  }, [locationInfo.coordinates, fetchWeatherAPI]);
+  }, [locationInfo.coordinates, fetchWeatherAPI]); */
 
   return (
     <LocationContext.Provider
