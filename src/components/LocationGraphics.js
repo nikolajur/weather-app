@@ -18,7 +18,7 @@ const LocationGraphics = () => {
   // console.log(ctx.coordinates.length);
 
   const map = useMap();
-  map.flyToBounds(bounds);
+  map.flyToBounds(bounds, { maxZoom: 12 });
   /* console.log(map.getCenter());
   console.log(map.getZoom()); */
   /*   map.flyTo([ctx.coordinates.lat, ctx.coordinates.lng], 12, {

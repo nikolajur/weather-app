@@ -68,8 +68,11 @@ const LocationProvider = ({ children }) => {
       console.log("method device");
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          // console.log(position.coords.latitude);
-          onPositionFound({ lat: position.coords.latitude, lng: position.coords.longitude }, true);
+          console.log([{ lat: position.coords.latitude, lng: position.coords.longitude }]);
+          onPositionFound(
+            [{ lat: position.coords.latitude, lng: position.coords.longitude }],
+            true
+          );
         },
         (error) => {
           onPositionError(error);
