@@ -62,53 +62,66 @@ const LocationProvider = ({ children }) => {
   };
 
   // get coordinates from device
-  const getCoordinatates = useCallback(async (method, searchedText = null) => {
-    setPositionIsLoading(true);
-    if (method === "device") {
-      console.log("method device");
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          console.log([{ lat: position.coords.latitude, lng: position.coords.longitude }]);
-          onPositionFound(
-            [{ lat: position.coords.latitude, lng: position.coords.longitude }],
-            true
-          );
-        },
-        (error) => {
-          onPositionError(error);
-        },
-        { timeout: 30000, maximumAge: 0 }
-      );
-    }
-    if (method === "search") {
-      console.log("ahoj ze search");
-      if (searchedText) {
-        console.log(searchedText);
-        try {
-          const data = await getCityCoordinates(searchedText);
-          console.log(data.length);
-          if (data.length === 1) {
-            onPositionFound({ lat: data[0].lat, lng: data[0].lon }, false);
-          }
-          if (data.length > 1) {
-            const coordinatesArray = data.map((city) => {
-              return { /*  name: city.name,  */ lat: city.lat, lng: city.lon };
-            });
-            console.log(coordinatesArray);
-            onPositionFound(coordinatesArray, false);
-          }
-        } catch (error) {
-          console.log(error);
-        }
-      } else {
-        console.log("napis jmeno");
-        setPositionIsLoading(false);
+  const getCoordinatates = useCallback(
+    async (method, searchedText = null) => {
+      setPositionIsLoading(true);
+      setLocationInfo((prev) => ({
+        ...prev,
+        isFromDevice: null,
+        coordinates: null,
+        weather: null
+      }));
+      if (method === "device") {
+        console.log("method device");
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            console.log([{ lat: position.coords.latitude, lng: position.coords.longitude }]);
+            onPositionFound(
+              [{ lat: position.coords.latitude, lng: position.coords.longitude }],
+              true
+            );
+            fetchWeatherAPI(position.coords.latitude, position.coords.longitude);
+          },
+          (error) => {
+            onPositionError(error);
+          },
+          { timeout: 30000, maximumAge: 0 }
+        );
       }
-      //funkce
-    } else {
-      return;
-    }
-  }, []);
+      if (method === "search") {
+        console.log("ahoj ze search");
+        if (searchedText) {
+          console.log(searchedText);
+          try {
+            const data = await getCityCoordinates(searchedText);
+            console.log(data.length);
+            if (data.length === 1) {
+              console.log("array length 1");
+              onPositionFound([{ lat: data[0].lat, lng: data[0].lon }], false);
+              fetchWeatherAPI(data[0].lat, data[0].lon);
+            }
+            if (data.length > 1) {
+              console.log("array length > 1");
+              const coordinatesArray = data.map((city) => {
+                return { /*  name: city.name,  */ lat: city.lat, lng: city.lon };
+              });
+              console.log(coordinatesArray);
+              onPositionFound(coordinatesArray, false);
+            }
+          } catch (error) {
+            console.log(error);
+          }
+        } else {
+          console.log("napis jmeno");
+          setPositionIsLoading(false);
+        }
+        //funkce
+      } else {
+        return;
+      }
+    },
+    [fetchWeatherAPI]
+  );
 
   useEffect(() => {
     console.log(locationInfo);

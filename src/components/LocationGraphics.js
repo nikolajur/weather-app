@@ -18,29 +18,12 @@ const LocationGraphics = () => {
   // console.log(ctx.coordinates.length);
 
   const map = useMap();
-  map.flyToBounds(bounds, { maxZoom: 12 });
-  /* console.log(map.getCenter());
-  console.log(map.getZoom()); */
-  /*   map.flyTo([ctx.coordinates.lat, ctx.coordinates.lng], 12, {
-    animate: true,
-    duration: 1,
-    easeLinearity: 0.75
-  }); */
+  map.flyToBounds(bounds, { maxZoom: 12, animate: true, duration: 1, easeLinearity: 0.75 });
 
   return ctx.coordinates.map((item, i) => {
     // console.log(item);
     return <Marker position={[item.lat, item.lng]} icon={circleIcon} key={i} />;
   });
-
-  /*  if (ctx.coordinates.length) {
-    ctx.coordinates.map((city, i) => {
-      console.log({ lat: city.lat, lng: city.lng });
-      return <Marker position={[15, 50]} key={i} alt="position marker" icon={circleIcon} />;
-    });
-  } else {
-    console.log(ctx.coordinates);
-    return <Marker position={ctx.coordinates} alt="position marker" icon={circleIcon} />;
-  } */
 };
 
 export default LocationGraphics;
