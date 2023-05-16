@@ -3,12 +3,21 @@ const Footer = () => {
     <>
       <footer>
         <p>&copy;Nikola Jurková 2023</p>
-        <p>
-          Icons by{" "}
-          <a target="_blank" href="https://icons8.com" rel="noreferrer">
-            Icons8
-          </a>
-        </p>
+        <a href="https://nikolajur.github.io/" target="_blank" rel="noreferrer"></a>
+        <div className="footer__credits">
+          <p>
+            Weather data:&nbsp;
+            <a href="https://openweathermap.org/" target="_blank" rel="noreferrer">
+              OpenWeather
+            </a>
+          </p>
+          <p>
+            Icons by&nbsp;
+            <a href="https://icons8.com" target="_blank" rel="noreferrer">
+              Icons8
+            </a>
+          </p>
+        </div>
       </footer>
     </>
   );

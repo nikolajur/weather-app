@@ -7,6 +7,7 @@ const SearchForm = () => {
 
   useEffect(() => {
     if (!ctx.isFromDevice) {
+      console.log("focus input");
       inputRef.current.focus();
     }
   }, [ctx.isFromDevice]);

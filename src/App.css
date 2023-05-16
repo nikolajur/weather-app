@@ -95,6 +95,12 @@ body {
   vertical-align: middle;
 }
 
+.search-position-tooltip {
+  margin-left: 0.75rem;
+  color: white;
+  font-size: 0.75rem;
+}
+
 .content {
   min-height: 9rem;
   margin-bottom: 1rem;
@@ -165,6 +171,14 @@ footer {
   font-size: 0.75rem;
   margin-top: 1rem;
   line-height: 1.5;
+}
+
+.footer__credits {
+  display: flex;
+  flex-wrap: wrap;
+}
+.footer__credits p {
+  margin: 0 0.25rem;
 }
 
 footer a:visited {
