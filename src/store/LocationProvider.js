@@ -22,23 +22,11 @@ const LocationProvider = ({ children }) => {
   const [positionError, setPositionError] = useState(null);
   const [weatherError, setWeatherError] = useState(null);
 
-  /* const saveLocationToLocalStorage = (name, lat, lng) => {
-    let favoriteLocations = JSON.parse(localStorage.getItem("my-locations")) || [];
-    console.log(favoriteLocations);
-    if (favoriteLocations.length === 5) {
-      favoriteLocations.shift();
-    }
-    favoriteLocations.push({ name, lat, lng });
-    console.log(favoriteLocations);
-    localStorage.setItem("my-locations", JSON.stringify(favoriteLocations));
-  }; */
-
   // weather data
   const fetchWeatherAPI = useCallback(async (lat, lng) => {
     setWeatherIsLoading(true);
     try {
       console.log("called get weather from ctx");
-      // console.log(lat, lng);
       const data = await getCurrentWeather(lat, lng);
 
       if (data) {
@@ -47,7 +35,6 @@ const LocationProvider = ({ children }) => {
         setLocationInfo((prev) => ({ ...prev, weather: data, isFromDevice: true }));
         setWeatherIsLoading(false);
         setWeatherError(false);
-        // saveLocationToLocalStorage(data.name, data.coord.lat, data.coord.lon);
       }
     } catch (error) {
       console.log(error);
@@ -60,7 +47,7 @@ const LocationProvider = ({ children }) => {
     //updateLocation({ lat: position.coords.latitude, lng: position.coords.longitude }, true);
     setLocationInfo((prev) => ({
       ...prev,
-      coordinates: position,
+      coordinates: position, // array
       /*  { lat: position.coords.latitude, lng: position.coords.longitude }, */
       isFromDevice: fromGPS
     }));
@@ -77,7 +64,7 @@ const LocationProvider = ({ children }) => {
 
   // get coordinates from device
   const getCoordinatates = useCallback(
-    async (method, searchedText = null) => {
+    async (method, searchedText = null, coordinates = null) => {
       setPositionIsLoading(true);
       setLocationInfo((prev) => ({
         ...prev,
@@ -101,8 +88,7 @@ const LocationProvider = ({ children }) => {
           },
           { timeout: 30000, maximumAge: 0 }
         );
-      }
-      if (method === "search") {
+      } else if (method === "search") {
         console.log("ahoj ze search");
         if (searchedText) {
           console.log(searchedText);
@@ -130,6 +116,11 @@ const LocationProvider = ({ children }) => {
           setPositionIsLoading(false);
         }
         //funkce
+      } else if (method === "select") {
+        console.log("selecting location");
+        onPositionFound([{ lat: coordinates[0], lng: coordinates[1] }], false);
+        console.log(coordinates[0], coordinates[1]);
+        fetchWeatherAPI(coordinates[0], coordinates[1]);
       } else {
         return;
       }
@@ -139,6 +130,7 @@ const LocationProvider = ({ children }) => {
 
   const selectLocationFromMany = useCallback(
     (lat, lng) => {
+      setPositionIsLoading(true);
       setLocationInfo((prev) => ({
         ...prev,
         coordinates: [{ lat: lat, lng: lng }]
@@ -151,14 +143,6 @@ const LocationProvider = ({ children }) => {
   useEffect(() => {
     console.log(locationInfo);
   }, [locationInfo]);
-
-  // když se změní poloha, fetch weather
-  /* useEffect(() => {
-    if (locationInfo.coordinates) {
-      console.log("ctx use effect fetch weather");
-      fetchWeatherAPI(locationInfo.coordinates.lat, locationInfo.coordinates.lng);
-    }
-  }, [locationInfo.coordinates, fetchWeatherAPI]); */
 
   return (
     <LocationContext.Provider

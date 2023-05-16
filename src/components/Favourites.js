@@ -4,9 +4,20 @@ import LocationContext from "../store/location-context";
 const Favourites = () => {
   const [favourites, setFavourites] = useState([]);
   const ctx = useContext(LocationContext);
+  console.log(favourites);
 
   const selectFromFavourites = (e) => {
     e.preventDefault();
+    const formData = new FormData(e.target);
+    const formJson = Object.fromEntries(formData.entries());
+    const selectedValue = JSON.parse(formJson.favourites); // array
+    // console.log(selectedValue);
+    // console.log(JSON.parse(formJson));
+    // const data = [...formData.entries()];
+    // console.log(JSON.parse(formJson.favourites));
+    // console.log(formJson.favourites[1]);
+
+    ctx.getCoordinates("select", null, selectedValue);
   };
 
   // after first render getting data from the local storage
@@ -50,12 +61,12 @@ const Favourites = () => {
     <div className="favourites">
       {/* <img src="https://img.icons8.com/ios-glyphs/30/000000/star--v1.png" alt="icon-star" /> */}
       {favourites.length >= 0 && (
-        <form onSubmit={selectFromFavourites}>
-          <select>
+        <form id="favourites-form" onSubmit={selectFromFavourites}>
+          <select name="favourites" form="favourites-form">
             <option value="">-- select favourite location --</option>
             {favourites.map((location, i) => {
               return (
-                <option key={i * 10} value={{ lat: location.lat, lng: location.lng }}>
+                <option key={i * 10} value={`[${location.lat}, ${location.lng}]`}>
                   {location.name}
                 </option>
               );
