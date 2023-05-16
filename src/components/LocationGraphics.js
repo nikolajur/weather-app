@@ -1,8 +1,9 @@
 import { useContext } from "react";
 import L from "leaflet";
-import { useMap, Marker } from "react-leaflet";
+import { useMap, Marker, Tooltip } from "react-leaflet";
 import LocationContext from "../store/location-context";
-import { circleIcon } from "../assets/circleIcon";
+import MarkerWithTooltip from "./MarkerWithTooltip";
+// import { circleIcon } from "../assets/circleIcon";
 // import WeatherGraphics from "./WeatherGraphics";
 
 const LocationGraphics = () => {
@@ -18,22 +19,17 @@ const LocationGraphics = () => {
   // console.log(ctx.coordinates.length);
 
   const map = useMap();
+
   map.flyToBounds(bounds, { maxZoom: 12, animate: true, duration: 1, easeLinearity: 0.75 });
 
   return ctx.coordinates.map((item, i) => {
     // console.log(item);
     return (
-      <Marker
+      <MarkerWithTooltip
         position={[item.lat, item.lng]}
-        icon={circleIcon}
         key={i}
-        eventHandlers={{
-          "click": () => {
-            ctx.selectLocationFromMany(item.lat, item.lng);
-            /* console.log("click marker");
-            console.log(item.lat, item.lng); */
-          }
-        }}
+        labelName={item.name}
+        labelCountry={item.country}
       />
     );
   });

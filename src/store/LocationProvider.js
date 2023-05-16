@@ -105,7 +105,7 @@ const LocationProvider = ({ children }) => {
             if (data.length > 1) {
               console.log("array length > 1");
               const coordinatesArray = data.map((city) => {
-                return { name: city.name, state: city.state, lat: city.lat, lng: city.lon };
+                return { name: city.name, country: city.country, lat: city.lat, lng: city.lon };
               });
               console.log(coordinatesArray);
               onPositionFound(coordinatesArray, false);
