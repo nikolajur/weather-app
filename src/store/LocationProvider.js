@@ -22,6 +22,17 @@ const LocationProvider = ({ children }) => {
   const [positionError, setPositionError] = useState(null);
   const [weatherError, setWeatherError] = useState(null);
 
+  const saveLocationToLocalStorage = (name, lat, lng) => {
+    let favoriteLocations = JSON.parse(localStorage.getItem("my-locations")) || [];
+    console.log(favoriteLocations);
+    if (favoriteLocations.length === 5) {
+      favoriteLocations.shift();
+    }
+    favoriteLocations.push({ name, lat, lng });
+    console.log(favoriteLocations);
+    localStorage.setItem("my-locations", JSON.stringify(favoriteLocations));
+  };
+
   // weather data
   const fetchWeatherAPI = useCallback(async (lat, lng) => {
     setWeatherIsLoading(true);
@@ -36,6 +47,7 @@ const LocationProvider = ({ children }) => {
         setLocationInfo((prev) => ({ ...prev, weather: data, isFromDevice: true }));
         setWeatherIsLoading(false);
         setWeatherError(false);
+        saveLocationToLocalStorage(data.name, data.coord.lat, data.coord.lon);
       }
     } catch (error) {
       console.log(error);
