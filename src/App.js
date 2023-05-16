@@ -2,6 +2,7 @@
 // import LocationContext from "./store/location-context";
 import Header from "./components/Header";
 import Search from "./components/Search";
+// import Favourites from "./components/Favourites";
 import Content from "./components/Content";
 import Map from "./components/Map";
 import Footer from "./components/Footer";
@@ -19,6 +20,7 @@ function App() {
     <div className="app">
       <Header />
       <Search />
+      {/* <Favourites /> */}
       <Content />
       <Map />
       <Footer />

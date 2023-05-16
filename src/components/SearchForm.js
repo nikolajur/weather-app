@@ -27,7 +27,7 @@ const SearchForm = () => {
         type="text"
         name="search"
         id="search"
-        placeholder="location..."
+        placeholder="type location..."
       />
       <button className="search-location-form__btn" type="submit">
         Find

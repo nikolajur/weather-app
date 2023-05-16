@@ -1,25 +1,27 @@
-import React, { useContext, useState } from "react";
+import React, { useContext /* , useState */ } from "react";
 import LocationContext from "../store/location-context";
 
 const SearchButton = () => {
   const ctx = useContext(LocationContext);
-  const [showTooltip, setShowTooltip] = useState();
+  /*  const [showTooltip, setShowTooltip] = useState(); */
 
-  const getCoordinatates = () => {
-    ctx.getCoordinates("device");
+  /* const getCoordinatates = () => {
+    
     console.log("position button clicked");
-  };
+  }; */
   return (
     <>
       <button
         className="search-position-btn"
-        onClick={getCoordinatates}
-        onMouseEnter={() => {
+        onClick={() => {
+          ctx.getCoordinates("device");
+        }}
+        /* onMouseEnter={() => {
           setShowTooltip(true);
         }}
         onMouseLeave={() => {
           setShowTooltip(false);
-        }}
+        }} */
       >
         <img
           className="search-position-btn__icon"
@@ -27,7 +29,7 @@ const SearchButton = () => {
           alt="use my location"
         />
       </button>
-      {showTooltip && <p className="search-position-tooltip">Get My Position</p>}
+      {/* {showTooltip && <p className="search-position-tooltip">Get My Position</p>} */}
     </>
   );
 };

@@ -10,7 +10,9 @@ const Content = () => {
       {/*  <p>{ctx.isLoading.position === null ? "null" : "není null"}</p>
       <p>{ctx.isLoading.weather === null ? "null" : "není null"}</p>
       <p>{ctx.coordinates === null ? "null" : "není null"}</p> */}
-      {!ctx.isLoading.position && !ctx.isLoading.weather && !ctx.coordinates && <p>Něco na úvod</p>}
+      {!ctx.isLoading.position && !ctx.isLoading.weather && !ctx.coordinates && (
+        <p>Type a location, use your device position or select from your favourite locations</p>
+      )}
       {(ctx.isLoading.position || ctx.isLoading.weather) && (
         <p className="loading">Waiting for data...</p>
       )}

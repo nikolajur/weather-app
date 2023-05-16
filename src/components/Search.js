@@ -1,12 +1,14 @@
 import React from "react";
 import SearchForm from "./SearchForm";
-import SearchButton from "./SearchButton";
+import SearchDevice from "./SearchDevice";
+import Favourites from "./Favourites";
 
 const Search = () => {
   return (
     <div className="search-container">
       <SearchForm />
-      <SearchButton />
+      <SearchDevice />
+      <Favourites />
     </div>
   );
 };
