@@ -14,6 +14,33 @@ const Content = () => {
       {(ctx.isLoading.position || ctx.isLoading.weather) && (
         <p className="loading">Waiting for data...</p>
       )}
+      {!ctx.isLoading.position &&
+        !ctx.isLoading.weather &&
+        ctx.coordinates?.length > 1 &&
+        !ctx.weather && (
+          <>
+            <p>More than 1 result found.</p>
+            <p>Please select searched location on the map.</p>
+            {/* <ul>
+              {ctx.coordinates.map((city, i) => {
+                return (
+                  <li key={i}>
+                    <p>
+                      {city.name} {city.state}
+                      <span
+                        onClick={() => {
+                          ctx.fetchWeatherAPI(city.lat, city.lng);
+                        }}
+                      >
+                        select
+                      </span>
+                    </p>
+                  </li>
+                );
+              })}
+            </ul> */}
+          </>
+        )}
 
       {!ctx.isLoading.position && !ctx.isLoading.weather && ctx.coordinates && ctx.weather && (
         <WeatherGraphics />

@@ -22,7 +22,20 @@ const LocationGraphics = () => {
 
   return ctx.coordinates.map((item, i) => {
     // console.log(item);
-    return <Marker position={[item.lat, item.lng]} icon={circleIcon} key={i} />;
+    return (
+      <Marker
+        position={[item.lat, item.lng]}
+        icon={circleIcon}
+        key={i}
+        eventHandlers={{
+          "click": () => {
+            ctx.selectLocationFromMany(item.lat, item.lng);
+            /* console.log("click marker");
+            console.log(item.lat, item.lng); */
+          }
+        }}
+      />
+    );
   });
 };
 

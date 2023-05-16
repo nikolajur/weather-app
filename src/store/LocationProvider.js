@@ -10,6 +10,7 @@ const DEFAULT_LOCATION_STATE = {
   isLoading: { position: null, weather: null },
   error: { position: null, weather: null },
   getCoordinatates: () => {},
+  selectLocationFromMany: () => {},
   fetchWeather: () => {}
 };
 
@@ -43,7 +44,7 @@ const LocationProvider = ({ children }) => {
     }
   }, []);
 
-  const onPositionFound = (position, fromGPS) => {
+  const onPositionFound = useCallback((position, fromGPS) => {
     //updateLocation({ lat: position.coords.latitude, lng: position.coords.longitude }, true);
     setLocationInfo((prev) => ({
       ...prev,
@@ -53,13 +54,14 @@ const LocationProvider = ({ children }) => {
     }));
     setPositionIsLoading(false);
     setPositionError(false);
-  };
-  const onPositionError = (error) => {
+  }, []);
+
+  const onPositionError = useCallback((error) => {
     console.log(error);
     setLocationInfo((prev) => ({ ...prev, isFromDevice: false, coordinates: null }));
     setPositionIsLoading(false);
     setPositionError(true);
-  };
+  }, []);
 
   // get coordinates from device
   const getCoordinatates = useCallback(
@@ -103,7 +105,7 @@ const LocationProvider = ({ children }) => {
             if (data.length > 1) {
               console.log("array length > 1");
               const coordinatesArray = data.map((city) => {
-                return { /*  name: city.name,  */ lat: city.lat, lng: city.lon };
+                return { name: city.name, state: city.state, lat: city.lat, lng: city.lon };
               });
               console.log(coordinatesArray);
               onPositionFound(coordinatesArray, false);
@@ -119,6 +121,17 @@ const LocationProvider = ({ children }) => {
       } else {
         return;
       }
+    },
+    [fetchWeatherAPI, onPositionFound, onPositionError]
+  );
+
+  const selectLocationFromMany = useCallback(
+    (lat, lng) => {
+      setLocationInfo((prev) => ({
+        ...prev,
+        coordinates: [{ lat: lat, lng: lng }]
+      }));
+      fetchWeatherAPI(lat, lng);
     },
     [fetchWeatherAPI]
   );
@@ -144,6 +157,7 @@ const LocationProvider = ({ children }) => {
         isLoading: { position: positionIsLoading, weather: weatherIsLoading },
         error: { position: positionError, weather: weatherError },
         getCoordinates: getCoordinatates,
+        selectLocationFromMany: selectLocationFromMany,
         fetchWeatherAPI: fetchWeatherAPI
       }}
     >

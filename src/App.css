@@ -99,6 +99,7 @@ body {
   min-height: 9rem;
   margin-bottom: 1rem;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   color: white;
