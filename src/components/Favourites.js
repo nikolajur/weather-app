@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect, useCallback } from "react";
 import LocationContext from "../store/location-context";
 
 const Favourites = () => {
@@ -11,14 +11,38 @@ const Favourites = () => {
     const formData = new FormData(e.target);
     const formJson = Object.fromEntries(formData.entries());
     const selectedValue = JSON.parse(formJson.favourites); // array
-    // console.log(selectedValue);
-    // console.log(JSON.parse(formJson));
-    // const data = [...formData.entries()];
-    // console.log(JSON.parse(formJson.favourites));
-    // console.log(formJson.favourites[1]);
 
     ctx.getCoordinates("select", null, selectedValue);
   };
+
+  const updateFavourites = useCallback(() => {
+    // nová lokalita počasí je ve state?
+    const isFavourite = favourites.some((location) => {
+      return location.name === ctx.weather.name;
+    });
+    console.log("update favourite");
+
+    // pokud není
+    if (!isFavourite) {
+      console.log("update favourite není ve favourite");
+      const savedFavourites = [...favourites];
+
+      if (savedFavourites.length === 5) {
+        savedFavourites.unshift();
+      }
+
+      savedFavourites.push({
+        name: ctx.weather.name,
+        lat: ctx.weather.coord.lat,
+        lng: ctx.weather.coord.lon
+      });
+
+      console.log(savedFavourites);
+      setFavourites(savedFavourites);
+      localStorage.clear("my-location");
+      localStorage.setItem("my-locations", JSON.stringify(savedFavourites));
+    }
+  }, [ctx.weather, favourites]);
 
   // after first render getting data from the local storage
   useEffect(() => {
@@ -32,30 +56,9 @@ const Favourites = () => {
 
   useEffect(() => {
     if (ctx.weather) {
-      const isFavourite = favourites.some((location) => {
-        return location.name === ctx.weather.name;
-      });
-
-      if (!isFavourite) {
-        const savedFavourites = [...favourites];
-
-        if (savedFavourites.length === 5) {
-          savedFavourites.unshift();
-        }
-
-        savedFavourites.push({
-          name: ctx.weather.name,
-          lat: ctx.weather.coord.lat,
-          lng: ctx.weather.coord.lon
-        });
-
-        console.log(savedFavourites);
-        setFavourites(savedFavourites);
-        localStorage.clear("my-location");
-        localStorage.setItem("my-locations", JSON.stringify(savedFavourites));
-      }
+      updateFavourites();
     }
-  }, [ctx.weather]);
+  }, [ctx.weather, updateFavourites]);
 
   return (
     <form className="favourites-form" id="favourites-form" onSubmit={selectFromFavourites}>

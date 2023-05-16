@@ -2,8 +2,11 @@ const Footer = () => {
   return (
     <>
       <footer>
-        <p>&copy;Nikola Jurková 2023</p>
-        <a href="https://nikolajur.github.io/" target="_blank" rel="noreferrer"></a>
+        <p>
+          <a href="https://nikolajur.github.io/" target="_blank" rel="noreferrer">
+            &copy;Nikola Jurková 2023
+          </a>
+        </p>
         <div className="footer__credits">
           <p>
             Weather data:&nbsp;

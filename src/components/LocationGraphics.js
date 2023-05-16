@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import L from "leaflet";
-import { useMap, Marker, Tooltip } from "react-leaflet";
+import { useMap } from "react-leaflet";
 import LocationContext from "../store/location-context";
 import MarkerWithTooltip from "./MarkerWithTooltip";
 // import { circleIcon } from "../assets/circleIcon";

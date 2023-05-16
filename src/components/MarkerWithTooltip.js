@@ -12,7 +12,7 @@ const MarkerWithTooltip = ({ position, labelName, labelCountry }) => {
       eventHandlers={{
         "click": () => {
           console.log("click marker");
-          ctx.selectLocationFromMany(position[0], position[1]);
+          ctx.getCoordinates("select", null, position);
         }
       }}
     >

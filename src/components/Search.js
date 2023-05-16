@@ -9,9 +9,10 @@ const Search = () => {
       <div className="search">
         <SearchForm />
         <SearchDevice />
+      </div>
+      <div className="favourites">
         <Favourites />
       </div>
-      <div className="favourites"></div>
     </>
   );
 };

@@ -10,7 +10,6 @@ const DEFAULT_LOCATION_STATE = {
   isLoading: { position: null, weather: null },
   error: { position: null, weather: null },
   getCoordinatates: () => {},
-  selectLocationFromMany: () => {},
   fetchWeather: () => {}
 };
 
@@ -128,18 +127,6 @@ const LocationProvider = ({ children }) => {
     [fetchWeatherAPI, onPositionFound, onPositionError]
   );
 
-  const selectLocationFromMany = useCallback(
-    (lat, lng) => {
-      setPositionIsLoading(true);
-      setLocationInfo((prev) => ({
-        ...prev,
-        coordinates: [{ lat: lat, lng: lng }]
-      }));
-      fetchWeatherAPI(lat, lng);
-    },
-    [fetchWeatherAPI]
-  );
-
   useEffect(() => {
     console.log(locationInfo);
   }, [locationInfo]);
@@ -153,7 +140,6 @@ const LocationProvider = ({ children }) => {
         isLoading: { position: positionIsLoading, weather: weatherIsLoading },
         error: { position: positionError, weather: weatherError },
         getCoordinates: getCoordinatates,
-        selectLocationFromMany: selectLocationFromMany,
         fetchWeatherAPI: fetchWeatherAPI
       }}
     >
