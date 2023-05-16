@@ -12,7 +12,7 @@ const SearchButton = () => {
   return (
     <>
       <button
-        className="search-position-btn"
+        className="search__position-btn"
         onClick={() => {
           ctx.getCoordinates("device");
         }}
@@ -24,7 +24,7 @@ const SearchButton = () => {
         }} */
       >
         <img
-          className="search-position-btn__icon"
+          className="search__position-btn__icon"
           src="https://img.icons8.com/ios-filled/50/center-direction.png"
           alt="use my location"
         />

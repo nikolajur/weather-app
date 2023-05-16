@@ -58,24 +58,22 @@ const Favourites = () => {
   }, [ctx.weather]);
 
   return (
-    <div className="favourites">
-      {/* <img src="https://img.icons8.com/ios-glyphs/30/000000/star--v1.png" alt="icon-star" /> */}
-      {favourites.length >= 0 && (
-        <form id="favourites-form" onSubmit={selectFromFavourites}>
-          <select name="favourites" form="favourites-form">
-            <option value="">-- select favourite location --</option>
-            {favourites.map((location, i) => {
-              return (
-                <option key={i * 10} value={`[${location.lat}, ${location.lng}]`}>
-                  {location.name}
-                </option>
-              );
-            })}
-          </select>
-          <button type="submit">Select</button>
-        </form>
-      )}
-    </div>
+    <form className="favourites-form" id="favourites-form" onSubmit={selectFromFavourites}>
+      <select name="favourites" form="favourites-form">
+        <option value="">-- select favourite location --</option>
+        {favourites.length >= 0 &&
+          favourites.map((location, i) => {
+            return (
+              <option key={i * 10} value={`[${location.lat}, ${location.lng}]`}>
+                {location.name}
+              </option>
+            );
+          })}
+      </select>
+      <button className="favourites-form-btn" type="submit">
+        Select
+      </button>
+    </form>
   );
 };
 

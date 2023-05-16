@@ -4,6 +4,7 @@ import LocationContext from "../store/location-context";
 const SearchForm = () => {
   const ctx = useContext(LocationContext);
   const inputRef = useRef();
+  console.log(ctx.isFromDevice);
 
   useEffect(() => {
     if (!ctx.isFromDevice) {
@@ -16,20 +17,20 @@ const SearchForm = () => {
     e.preventDefault();
     console.log("get city search");
     const searchedText = inputRef.current?.value;
-    ctx.getCoordinates("search", searchedText);
+    ctx.getCoordinates("search", searchedText, null);
   };
 
   return (
-    <form className="search-location-form" onSubmit={onFormSubmit}>
+    <form className="search__location-form" onSubmit={onFormSubmit}>
       <input
-        className="search-location-form__input"
+        className="search__location-form__input"
         ref={inputRef}
         type="text"
         name="search"
         id="search"
         placeholder="type location..."
       />
-      <button className="search-location-form__btn" type="submit">
+      <button className="search__location-form__btn" type="submit">
         Find
       </button>
     </form>

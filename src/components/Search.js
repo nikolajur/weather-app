@@ -5,11 +5,14 @@ import Favourites from "./Favourites";
 
 const Search = () => {
   return (
-    <div className="search-container">
-      <SearchForm />
-      <SearchDevice />
-      <Favourites />
-    </div>
+    <>
+      <div className="search">
+        <SearchForm />
+        <SearchDevice />
+        <Favourites />
+      </div>
+      <div className="favourites"></div>
+    </>
   );
 };
 

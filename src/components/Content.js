@@ -11,7 +11,23 @@ const Content = () => {
       <p>{ctx.isLoading.weather === null ? "null" : "není null"}</p>
       <p>{ctx.coordinates === null ? "null" : "není null"}</p> */}
       {!ctx.isLoading.position && !ctx.isLoading.weather && !ctx.coordinates && (
-        <p>Něco na začátek</p>
+        <div className="content__instructions">
+          <p>Type a location</p>
+          <p>OR</p>
+          <p>
+            Use your device position (press the&nbsp;
+            <span>
+              <img
+                className="search-position-btn__icon"
+                src="https://img.icons8.com/ios-filled/50/center-direction.png"
+                alt="location-icon"
+              />
+            </span>
+            &nbsp;button)
+          </p>
+          <p>OR</p>
+          <p>Select from the list of your previous locations</p>
+        </div>
       )}
       {(ctx.isLoading.position || ctx.isLoading.weather) && (
         <p className="loading">Waiting for data...</p>
@@ -23,24 +39,6 @@ const Content = () => {
           <>
             <p>More than 1 result found.</p>
             <p>Please select searched location on the map.</p>
-            {/* <ul>
-              {ctx.coordinates.map((city, i) => {
-                return (
-                  <li key={i}>
-                    <p>
-                      {city.name} {city.state}
-                      <span
-                        onClick={() => {
-                          ctx.fetchWeatherAPI(city.lat, city.lng);
-                        }}
-                      >
-                        select
-                      </span>
-                    </p>
-                  </li>
-                );
-              })}
-            </ul> */}
           </>
         )}
 
