@@ -4,6 +4,10 @@ import WeatherIcon from "./WeatherIcon";
 
 const WeatherGraphics = () => {
   const ctx = useContext(LocationContext);
+  const isRaining =
+    ctx.weather.rain && ["09d", "09n", "10d", "10n"].includes(ctx.weather.weather[0].icon);
+
+  console.log("rain: " + isRaining);
   // console.log(ctx.weather);
   return (
     <div className="weather">
@@ -16,6 +20,13 @@ const WeatherGraphics = () => {
       <div className="weather__description">
         <h2 className="weather__description-text">{ctx.weather.weather[0].description}</h2>
         <WeatherIcon icon={ctx.weather.weather[0].icon} />
+        {isRaining && (
+          <p className="weather__property">
+            <span className="weather__property-value">
+              {Math.round(ctx.weather.rain["1h"])}mm/h
+            </span>
+          </p>
+        )}
       </div>
       <p className="weather__property">
         temperature:
