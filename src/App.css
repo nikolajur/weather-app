@@ -210,17 +210,35 @@ body {
 
 .weather__property {
   font-size: 1rem;
+  /*  display: flex;
+  justify-content: center;
+  align-items: center; */
   /* line-height: 1.25; */
 }
 
 .weather__property-value {
   font-weight: 700;
+  font-size: 1rem;
+  /* vertical-align: middle; */
 }
 
 .weather__temeprature {
   font-size: 1.25rem;
   font-weight: 700;
   margin-bottom: 0.25rem;
+}
+
+.weather__wind {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.weather__wind-arrow {
+  /* width: 1rem;
+  height: 1rem; */
+  margin-left: 0.25rem;
 }
 
 footer {

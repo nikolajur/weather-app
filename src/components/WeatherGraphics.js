@@ -4,8 +4,31 @@ import WeatherIcon from "./WeatherIcon";
 
 const WeatherGraphics = () => {
   const ctx = useContext(LocationContext);
+  console.log("render weather graphics");
   const isRaining =
     ctx.weather?.rain; /* && ["09d", "09n", "10d", "10n"].includes(ctx.weather.weather[0].icon) */
+
+  console.log(ctx.weather.wind.deg);
+  let windDirection;
+  if (ctx.weather.wind.deg >= 337 || ctx.weather.wind.deg < 22) {
+    windDirection = "long-arrow-down";
+  } else if (ctx.weather.wind.deg >= 22 && ctx.weather.wind.deg < 67) {
+    windDirection = "down-left-arrow";
+  } else if (ctx.weather.wind.deg >= 67 && ctx.weather.wind.deg < 112) {
+    windDirection = "long-arrow-left";
+  } else if (ctx.weather.wind.deg >= 112 && ctx.weather.wind.deg < 157) {
+    windDirection = "up-left-arrow";
+  } else if (ctx.weather.wind.deg >= 157 && ctx.weather.wind.deg < 202) {
+    windDirection = "long-arrow-up";
+  } else if (ctx.weather.wind.deg >= 202 && ctx.weather.wind.deg < 247) {
+    windDirection = "up-right-arrow";
+  } else if (ctx.weather.wind.deg >= 247 && ctx.weather.wind.deg < 292) {
+    windDirection = "long-arrow-right.";
+  } else if (ctx.weather.wind.deg >= 292 && ctx.weather.wind.deg < 337) {
+    windDirection = "down-right-arrow";
+  }
+
+  console.log(windDirection);
 
   console.log("rain: " + isRaining);
   // console.log(ctx.weather);
@@ -41,13 +64,22 @@ const WeatherGraphics = () => {
           &nbsp;&nbsp;{Math.round(ctx.weather.main.humidity)}&nbsp;%
         </span>
       </p>
-      {/* <p>cloudiness: {Math.round(ctx.weather.clouds.all)} %</p> */}
-      <p>
-        wind speed:
-        <span className="weather__property-value">
-          &nbsp;&nbsp;{Math.round(ctx.weather.wind.speed)}&nbsp;km/h
-        </span>
-      </p>
+      <div className="weather__wind">
+        <p className="weather__property">
+          wind:
+          <span className="weather__property-value">
+            &nbsp;&nbsp;{Math.round(ctx.weather.wind.speed)}&nbsp;km/h
+          </span>
+        </p>
+
+        <img
+          className="weather__wind-arrow"
+          width="19"
+          height="19"
+          src={`https://img.icons8.com/ios-filled/50/ffffff/${windDirection}.png`}
+          alt={windDirection}
+        />
+      </div>
     </div>
   );
 };
