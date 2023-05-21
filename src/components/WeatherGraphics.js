@@ -28,12 +28,7 @@ const WeatherGraphics = () => {
           </p>
         )}
       </div>
-      <p className="weather__property">
-        temperature:
-        <span className="weather__property-value">
-          &nbsp;&nbsp;{Math.round(ctx.weather.main.temp)}°C
-        </span>
-      </p>
+      <p className="weather__temeprature">{Math.round(ctx.weather.main.temp)}°C</p>
       <p className="weather__property">
         feels like:
         <span className="weather__property-value">
