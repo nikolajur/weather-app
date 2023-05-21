@@ -15,7 +15,7 @@ const LocationGraphics = () => {
   });
   // console.log(coordinatesArray);
   const bounds = L.polygon(coordinatesArray).getBounds();
-  // console.log(bounds);
+  console.log(bounds);
   // console.log(ctx.coordinates.length);
 
   const map = useMap();

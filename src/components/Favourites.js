@@ -21,6 +21,7 @@ const Favourites = () => {
       return location.name === ctx.weather.name;
     });
     console.log("update favourite");
+    console.log(isFavourite);
 
     // pokud není
     if (!isFavourite) {
