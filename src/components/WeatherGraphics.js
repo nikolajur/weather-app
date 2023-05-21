@@ -5,7 +5,7 @@ import WeatherIcon from "./WeatherIcon";
 const WeatherGraphics = () => {
   const ctx = useContext(LocationContext);
   const isRaining =
-    ctx.weather.rain && ["09d", "09n", "10d", "10n"].includes(ctx.weather.weather[0].icon);
+    ctx.weather?.rain; /* && ["09d", "09n", "10d", "10n"].includes(ctx.weather.weather[0].icon) */
 
   console.log("rain: " + isRaining);
   // console.log(ctx.weather);

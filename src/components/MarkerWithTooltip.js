@@ -38,8 +38,8 @@ const MarkerWithTooltip = ({ position, labelName, labelCountry }) => {
     >
       {tooltipLabel && (
         <Tooltip
-          direction="top"
-          offset={[0, -16]}
+          /*  direction="top"
+          offset={[0, -16]} */
           permanent
           eventHandlers={{
             "click": () => {

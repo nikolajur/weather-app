@@ -26,11 +26,18 @@ const Favourites = () => {
     // pokud není
     if (!isFavourite) {
       console.log("update favourite není ve favourite");
-      const savedFavourites = [...favourites];
+      let savedFavourites = favourites.length === 5 ? favourites.slice(1) : [...favourites];
 
-      if (savedFavourites.length === 5) {
-        savedFavourites.unshift();
-      }
+      /* 
+      let savedFavourites;
+
+      if (favourites.length >== 5) {
+        savedFavourites = favourites.slice(0,4);
+      } else {
+        savedFavourites = [...favourites];
+      } */
+
+      console.log(savedFavourites);
 
       savedFavourites.push({
         name: ctx.weather.name,
