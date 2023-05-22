@@ -30,6 +30,10 @@ const WeatherGraphics = () => {
     }
   };
 
+  const onBackBtnHandler = () => {
+    setShowCurrentWeather(true);
+  };
+
   return (
     <div className="weather">
       {showCurrentWeather && (
@@ -51,7 +55,7 @@ const WeatherGraphics = () => {
       )}
       {weatherForecast && !showCurrentWeather && (
         <>
-          <button className="weather__back-btn" onClick={onNextBtnHandler}>
+          <button className="weather__back-btn" onClick={onBackBtnHandler}>
             <img
               className="weather__back-icon"
               src="https://img.icons8.com/ios-filled/50/ffffff/less-than.png"

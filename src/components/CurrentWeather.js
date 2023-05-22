@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import LocationContext from "../store/location-context";
-import WeatherIcon from "./WeatherIcon";
+import CurrentWeatherIcon from "./CurrentWeatherIcon";
 
 const CurrentWeather = () => {
   const ctx = useContext(LocationContext);
@@ -38,7 +38,7 @@ const CurrentWeather = () => {
       </div>
       <div className="weather__description">
         <h2 className="weather__description-text">{ctx.weather.weather[0].description}</h2>
-        <WeatherIcon icon={ctx.weather.weather[0].icon} />
+        <CurrentWeatherIcon code={ctx.weather.weather[0].icon} />
         {isRaining && (
           <p className="weather__property">
             <span className="weather__property-value">

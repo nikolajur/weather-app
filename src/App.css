@@ -294,9 +294,10 @@ body {
 }
 
 .weather__forecast-item {
-  width: 3rem;
+  /* width: 3rem; */
   border: 1px solid white;
   flex-shrink: 0;
+  padding: 0.25rem;
 }
 
 footer {
