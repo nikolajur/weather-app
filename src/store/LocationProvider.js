@@ -56,7 +56,7 @@ const LocationProvider = ({ children }) => {
 
   const onPositionError = useCallback((error) => {
     console.log(error);
-    setLocationInfo((prev) => ({ ...prev, isFromDevice: false, coordinates: null }));
+    //setLocationInfo((prev) => ({ ...prev, isFromDevice: null, coordinates: null })); - už nastaveno nazačátku
     setPositionIsLoading(false);
     setPositionError(true);
   }, []);
@@ -109,12 +109,15 @@ const LocationProvider = ({ children }) => {
             }
           } catch (error) {
             console.log(error);
+            onPositionError(error);
+            // poslat zprávu na page
           }
         } else {
           console.log("napis jmeno");
+          // instrukce na page
           setPositionIsLoading(false);
         }
-        //funkce
+        //funkce ?
       } else if (method === "select") {
         console.log("selecting location");
         onPositionFound([{ lat: coordinates[0], lng: coordinates[1] }], false);
