@@ -113,6 +113,7 @@ body {
   font-size: 1rem;
   font-family: inherit;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
 }
 
@@ -123,6 +124,7 @@ body {
   border: none;
   border-radius: 0.25rem;
   height: 1.75rem;
+  margin-right: 0.75rem;
 }
 
 .favourites-form option {
@@ -131,7 +133,7 @@ body {
 
 .favourites-form-btn {
   margin-right: 0;
-  margin-left: 0.75rem;
+  margin: 0.5rem 0;
   font-family: inherit;
 }
 
@@ -179,8 +181,33 @@ body {
   flex-grow: 1;
 }
 
-.weather_forecast {
+.weather_next {
   min-width: 2rem;
+}
+
+.weather__next-text {
+  font-size: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+.weather__next-btn {
+  /* padding: 0.25rem; */
+  border: 1px solid white;
+  background-color: transparent;
+  border-radius: 0.25rem;
+  margin: 0.5rem 0;
+  cursor: pointer;
+}
+.weather__next-icon {
+  /*  width: 1.75rem;
+  height: 1.75rem;
+  border: 1px solid white;
+  border-radius: 0.25rem;
+  margin: 0 0.25rem;
+  padding: 0.25rem; */
+
+  width: 1.75rem;
+  height: 1.75rem;
+  vertical-align: middle;
 }
 
 .weather__location {

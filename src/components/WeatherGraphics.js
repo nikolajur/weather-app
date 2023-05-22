@@ -82,13 +82,22 @@ const WeatherGraphics = () => {
           />
         </div>
       </div>
-      <div className="weather_forecast">
-        <img
-          width="32"
-          height="32"
-          src="https://img.icons8.com/ios-filled/50/ffffff/more-than.png"
-          alt="more-than"
-        />
+      <div className="weather_next">
+        <p className="weather__next-text">next</p>
+        <p className="weather__next-text">7 days</p>
+
+        <button
+          className="weather__next-btn"
+          onClick={() => {
+            console.log("show next 7 clicked");
+          }}
+        >
+          <img
+            className="weather__next-icon"
+            src="https://img.icons8.com/ios-filled/50/ffffff/more-than.png"
+            alt="next-7-days"
+          />
+        </button>
       </div>
     </div>
   );
