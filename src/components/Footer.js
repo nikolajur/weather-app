@@ -12,6 +12,10 @@ const Footer = () => {
             Weather data:&nbsp;
             <a href="https://openweathermap.org/" target="_blank" rel="noreferrer">
               OpenWeather
+            </a>{" "}
+            &{" "}
+            <a href="https://open-meteo.com/" target="_blank" rel="noreferrer">
+              Open-Meteo.com
             </a>
           </p>
           <p>
