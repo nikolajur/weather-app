@@ -1,4 +1,4 @@
-import ForcastWeatherIcon from "./ForcastWeatherIcon";
+import WeatherForcastIcon from "./WeatherForcastIcon";
 
 const WeatherForcastItem = ({ time, temperatureMin, temperatureMax, precipitation, code }) => {
   console.log(time, temperatureMin, temperatureMax, precipitation, code);
@@ -33,12 +33,28 @@ const WeatherForcastItem = ({ time, temperatureMin, temperatureMax, precipitatio
 
   return (
     <div className="weather__forecast-item">
-      <p>{time.slice(-5)}</p>
-      <p>{day}</p>
-      <p>{<ForcastWeatherIcon code={code} />}</p>
-      <p>{temperatureMin}</p>
-      <p>{temperatureMax}</p>
-      <p>{precipitation}</p>
+      <p className="weather__property">{time.slice(-5)}</p>
+      <p className="weather__property">{day}</p>
+      <p>{<WeatherForcastIcon code={code} />}</p>
+      <p className="weather__property">
+        min:&nbsp;
+        <span className="weather__property-value">{temperatureMin}°C</span>
+      </p>
+      <p className="weather__property">
+        max:&nbsp;<span className="weather__property-value">{temperatureMax}°C</span>
+      </p>
+      <p className="weather__property">
+        <span className="weather__property-value">
+          <img
+            className="weather__forecast-rain-icon"
+            width="12"
+            height="12"
+            src="https://img.icons8.com/material-outlined/24/ffffff/blur.png"
+            alt="blur"
+          />
+          {precipitation}&nbsp;mm
+        </span>
+      </p>
     </div>
   );
 };

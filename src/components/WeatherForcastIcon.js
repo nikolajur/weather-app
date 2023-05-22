@@ -1,38 +1,57 @@
 import React from "react";
 // import sun from "../assets/weather-icons/01d.svg";
 
-const ForcastWeatherIcon = ({ code }) => {
+const WeatherForcastIcon = ({ code }) => {
   let weatherIconSrc;
   console.log(code);
   switch (code) {
     case 0:
+    case 1:
       weatherIconSrc = "sun.png";
       break;
-
-    case "02d":
+    case 2:
       weatherIconSrc = "partly-cloudy-day.png";
       break;
 
-    case "03d":
+    /*  case "03d":
       weatherIconSrc = "clouds.png";
-      break;
-    case "04d":
+      break; */
+    case 3:
       weatherIconSrc = "cloud.png";
       break;
-    case "09d":
+    case 45:
+    case 48:
+      weatherIconSrc = "fog-day.png";
+      break;
+    case 51:
+    case 53:
+    case 55:
+    case 56:
+    case 57:
       weatherIconSrc = "rain.png";
       break;
-    case "10d":
+    case 61:
+    case 63:
+    case 65:
+    case 66:
+    case 67:
+    case 80:
+    case 81:
+    case 82:
       weatherIconSrc = "rainy-weather.png";
       break;
-    case "11d":
-      weatherIconSrc = "storm.png";
-      break;
-    case "13d":
+    case 71:
+    case 73:
+    case 75:
+    case 77:
+    case 85:
+    case 86:
       weatherIconSrc = "snow.png";
       break;
-    case "50d":
-      weatherIconSrc = "fog-day.png";
+    case 95:
+    case 96:
+    case 99:
+      weatherIconSrc = "storm.png";
       break;
 
     default:
@@ -50,4 +69,4 @@ const ForcastWeatherIcon = ({ code }) => {
   );
 };
 
-export default ForcastWeatherIcon;
+export default WeatherForcastIcon;

@@ -294,10 +294,14 @@ body {
 }
 
 .weather__forecast-item {
-  /* width: 3rem; */
+  width: 6rem;
   border: 1px solid white;
   flex-shrink: 0;
   padding: 0.25rem;
+}
+
+.weather__forecast-rain-icon {
+  margin-right: 0.25rem;
 }
 
 footer {
