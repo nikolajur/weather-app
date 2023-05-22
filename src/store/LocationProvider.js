@@ -31,7 +31,11 @@ const LocationProvider = ({ children }) => {
       if (data) {
         console.log("context response");
         console.log(data);
-        setLocationInfo((prev) => ({ ...prev, weather: data, isFromDevice: true }));
+        setLocationInfo((prev) => ({
+          ...prev,
+          weather: data,
+          isFromDevice: true
+        }));
         setWeatherIsLoading(false);
         setWeatherError(false);
       }
@@ -78,6 +82,7 @@ const LocationProvider = ({ children }) => {
             console.log([{ lat: position.coords.latitude, lng: position.coords.longitude }]);
             onPositionFound(
               [{ lat: position.coords.latitude, lng: position.coords.longitude }],
+              /*  null, */
               true
             );
             fetchWeatherAPI(position.coords.latitude, position.coords.longitude);
@@ -93,16 +98,26 @@ const LocationProvider = ({ children }) => {
           console.log(searchedText);
           try {
             const data = await getCityCoordinates(searchedText);
-            console.log(data.length);
+            // console.log(data.length);
+            console.log(data);
             if (data.length === 1) {
               console.log("array length 1");
-              onPositionFound([{ lat: data[0].lat, lng: data[0].lon }], false);
-              fetchWeatherAPI(data[0].lat, data[0].lon);
+              // onPositionFound([{ lat: data[0].lat, lng: data[0].lon }], false);
+              onPositionFound([{ lat: data[0].latitude, lng: data[0].longitude }], false);
+
+              // fetchWeatherAPI(data[0].lat, data[0].lon);
+              fetchWeatherAPI(data[0].latitude, data[0].longitude);
             }
             if (data.length > 1) {
               console.log("array length > 1");
               const coordinatesArray = data.map((city) => {
-                return { name: city.name, country: city.country, lat: city.lat, lng: city.lon };
+                // return { name: city.name, country: city.country, lat: city.lat, lng: city.lon };
+                return {
+                  name: city.name,
+                  country: city.country_code,
+                  lat: city.latitude,
+                  lng: city.longitude
+                };
               });
               console.log(coordinatesArray);
               onPositionFound(coordinatesArray, false);
