@@ -34,50 +34,60 @@ const WeatherGraphics = () => {
   // console.log(ctx.weather);
   return (
     <div className="weather">
-      <div className="weather__location">
-        <h1 className="weather__location-name">{ctx.weather.name}</h1>
-        <p className="weather__location-timestamp">
-          at&nbsp;{new Date(ctx.weather.dt * 1000).toLocaleTimeString()}
-        </p>
-      </div>
-      <div className="weather__description">
-        <h2 className="weather__description-text">{ctx.weather.weather[0].description}</h2>
-        <WeatherIcon icon={ctx.weather.weather[0].icon} />
-        {isRaining && (
-          <p className="weather__property">
-            <span className="weather__property-value">
-              {Math.round(ctx.weather.rain["1h"])}mm/h
-            </span>
+      <div className="weather__now">
+        <div className="weather__location">
+          <h1 className="weather__location-name">{ctx.weather.name}</h1>
+          <p className="weather__location-timestamp">
+            at&nbsp;{new Date(ctx.weather.dt * 1000).toLocaleTimeString()}
           </p>
-        )}
-      </div>
-      <p className="weather__temeprature">{Math.round(ctx.weather.main.temp)}°C</p>
-      <p className="weather__property">
-        feels like:
-        <span className="weather__property-value">
-          &nbsp;&nbsp;{Math.round(ctx.weather.main.feels_like)}°C
-        </span>
-      </p>
-      <p className="weather__property">
-        humidity:
-        <span className="weather__property-value">
-          &nbsp;&nbsp;{Math.round(ctx.weather.main.humidity)}&nbsp;%
-        </span>
-      </p>
-      <div className="weather__wind">
+        </div>
+        <div className="weather__description">
+          <h2 className="weather__description-text">{ctx.weather.weather[0].description}</h2>
+          <WeatherIcon icon={ctx.weather.weather[0].icon} />
+          {isRaining && (
+            <p className="weather__property">
+              <span className="weather__property-value">
+                {Math.round(ctx.weather.rain["1h"])}mm/h
+              </span>
+            </p>
+          )}
+        </div>
+        <p className="weather__temeprature">{Math.round(ctx.weather.main.temp)}°C</p>
         <p className="weather__property">
-          wind:
+          feels like:
           <span className="weather__property-value">
-            &nbsp;&nbsp;{Math.round(ctx.weather.wind.speed)}&nbsp;km/h
+            &nbsp;&nbsp;{Math.round(ctx.weather.main.feels_like)}°C
           </span>
         </p>
+        <p className="weather__property">
+          humidity:
+          <span className="weather__property-value">
+            &nbsp;&nbsp;{Math.round(ctx.weather.main.humidity)}&nbsp;%
+          </span>
+        </p>
+        <div className="weather__wind">
+          <p className="weather__property">
+            wind:
+            <span className="weather__property-value">
+              &nbsp;&nbsp;{Math.round(ctx.weather.wind.speed)}&nbsp;km/h
+            </span>
+          </p>
 
+          <img
+            className="weather__wind-arrow"
+            width="19"
+            height="19"
+            src={`https://img.icons8.com/ios-filled/50/ffffff/${windDirection}.png`}
+            alt={windDirection}
+          />
+        </div>
+      </div>
+      <div className="weather_forecast">
         <img
-          className="weather__wind-arrow"
-          width="19"
-          height="19"
-          src={`https://img.icons8.com/ios-filled/50/ffffff/${windDirection}.png`}
-          alt={windDirection}
+          width="32"
+          height="32"
+          src="https://img.icons8.com/ios-filled/50/ffffff/more-than.png"
+          alt="more-than"
         />
       </div>
     </div>

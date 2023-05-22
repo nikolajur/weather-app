@@ -168,7 +168,19 @@ body {
   width: 100%;
   text-align: center;
   color: white;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
   /* height: 20vh; */
+}
+
+.weather__now {
+  flex-grow: 1;
+}
+
+.weather_forecast {
+  min-width: 2rem;
 }
 
 .weather__location {
