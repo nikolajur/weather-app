@@ -10,7 +10,18 @@ export const getWeatherForecast = async (lat, lng) => {
     try {
       const response = await axios.get(url);
       // console.log(response.data);
-      return response.data;
+      let forecast = [];
+      for (let i = 0; i < 7; i++) {
+        forecast.push({
+          time: response.data.daily.time[i],
+          temperatureMax: response.data.daily.temperature_2m_max[i],
+          temperatureMin: response.data.daily.temperature_2m_min[i],
+          precipitation: response.data.daily.precipitation_sum[i],
+          code: response.data.daily.weathercode[i]
+        });
+      }
+      // console.log(forecast);
+      return forecast;
     } catch (error) {
       console.log(error);
       throw new Error(error);

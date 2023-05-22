@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import LocationContext from "../store/location-context";
 import { getWeatherForecast } from "../helpers/getWeatherForecast";
 import CurrentWeather from "./CurrentWeather";
+import WeatherForcastItem from "./WeatherForcastItem";
 
 const WeatherGraphics = () => {
   console.log("render weather graphics");
@@ -9,6 +10,7 @@ const WeatherGraphics = () => {
 
   const [weatherForecast, setWeatherForecast] = useState(null);
   const [showCurrentWeather, setShowCurrentWeather] = useState(true);
+  console.log(weatherForecast);
 
   const onNextBtnHandler = async () => {
     try {
@@ -47,7 +49,31 @@ const WeatherGraphics = () => {
           </div>
         </>
       )}
-      {weatherForecast && <h1>data ve state</h1>}
+      {weatherForecast && !showCurrentWeather && (
+        <>
+          <button className="weather__back-btn" onClick={onNextBtnHandler}>
+            <img
+              className="weather__back-icon"
+              src="https://img.icons8.com/ios-filled/50/ffffff/less-than.png"
+              alt="show-current-weather"
+            />
+          </button>
+          <div className="weather__forecast">
+            {weatherForecast.map((day, i) => {
+              return (
+                <WeatherForcastItem
+                  key={i}
+                  time={day.time}
+                  temperatureMax={day.temperatureMax}
+                  temperatureMin={day.temperatureMin}
+                  precipitation={day.precipitation}
+                  code={day.code}
+                />
+              );
+            })}
+          </div>
+        </>
+      )}
     </div>
   );
 };
