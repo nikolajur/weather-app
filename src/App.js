@@ -3,7 +3,7 @@
 import Header from "./components/Header";
 import Search from "./components/Search";
 // import Favourites from "./components/Favourites";
-import Content from "./components/Content";
+import TextContent from "./components/TextContent";
 import Map from "./components/Map";
 import Footer from "./components/Footer";
 
@@ -21,7 +21,7 @@ function App() {
       <Header />
       <Search />
       {/* <Favourites /> */}
-      <Content />
+      <TextContent />
       <Map />
       <Footer />
     </div>

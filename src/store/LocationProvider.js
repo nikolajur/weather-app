@@ -62,7 +62,7 @@ const LocationProvider = ({ children }) => {
     console.log(error);
     //setLocationInfo((prev) => ({ ...prev, isFromDevice: null, coordinates: null })); - už nastaveno nazačátku
     setPositionIsLoading(false);
-    setPositionError(true);
+    setPositionError(error);
   }, []);
 
   // get coordinates from device
@@ -88,12 +88,11 @@ const LocationProvider = ({ children }) => {
             fetchWeatherAPI(position.coords.latitude, position.coords.longitude);
           },
           (error) => {
-            onPositionError(error);
+            onPositionError("I can't get the device position.");
           },
           { timeout: 30000, maximumAge: 0 }
         );
       } else if (method === "search") {
-        console.log("ahoj ze search");
         if (searchedText) {
           console.log(searchedText);
           try {
@@ -124,13 +123,16 @@ const LocationProvider = ({ children }) => {
             }
           } catch (error) {
             console.log(error);
-            onPositionError(error);
+            /* if (error.response.status === 404 || error.response.status === 408) {
+              onPositionError("I can't connect to the location provider at the moment.");
+            } else {
+            } */
+            onPositionError("I can't find a location with this name.");
             // poslat zprávu na page
           }
         } else {
           console.log("napis jmeno");
-          // instrukce na page
-          setPositionIsLoading(false);
+          onPositionError("Please enter a valid location name");
         }
         //funkce ?
       } else if (method === "select") {
@@ -147,7 +149,8 @@ const LocationProvider = ({ children }) => {
 
   useEffect(() => {
     console.log(locationInfo);
-  }, [locationInfo]);
+    console.log(weatherError);
+  }, [locationInfo, weatherError]);
 
   return (
     <LocationContext.Provider
