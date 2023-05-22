@@ -39,14 +39,14 @@ const WeatherGraphics = () => {
       {showCurrentWeather && (
         <>
           <CurrentWeather />
-          <div className="weather_next">
+          <div className="weather__next">
             <p className="weather__next-text">next</p>
             <p className="weather__next-text">7 days</p>
 
             <button className="weather__next-btn" onClick={onNextBtnHandler}>
               <img
                 className="weather__next-icon"
-                src="https://img.icons8.com/ios-filled/50/ffffff/more-than.png"
+                src="https://img.icons8.com/ios-filled/50/023047/more-than.png"
                 alt="next-7-days"
               />
             </button>
@@ -55,13 +55,17 @@ const WeatherGraphics = () => {
       )}
       {weatherForecast && !showCurrentWeather && (
         <>
-          <button className="weather__back-btn" onClick={onBackBtnHandler}>
-            <img
-              className="weather__back-icon"
-              src="https://img.icons8.com/ios-filled/50/ffffff/less-than.png"
-              alt="show-current-weather"
-            />
-          </button>
+          <div className="weather__back">
+            <p className="weather__back-text">current</p>
+            <p className="weather__back-text">weather</p>
+            <button className="weather__back-btn" onClick={onBackBtnHandler}>
+              <img
+                className="weather__back-icon"
+                src="https://img.icons8.com/ios-filled/50/023047/less-than.png"
+                alt="show-current-weather"
+              />
+            </button>
+          </div>
           <div className="weather__forecast">
             {weatherForecast.map((day, i) => {
               return (

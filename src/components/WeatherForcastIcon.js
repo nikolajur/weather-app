@@ -62,7 +62,7 @@ const WeatherForcastIcon = ({ code }) => {
   return (
     <img
       className="weather__description-icon"
-      src={`https://img.icons8.com/sf-regular/48/ffffff/${weatherIconSrc}`}
+      src={`https://img.icons8.com/sf-regular/48/023047/${weatherIconSrc}`}
       alt="weather-icon"
       /*  style={{ width: "48px", height: "48px" }} */
     />

@@ -71,7 +71,7 @@ const Favourites = () => {
   return (
     <form className="favourites-form" id="favourites-form" onSubmit={selectFromFavourites}>
       <select name="favourites" form="favourites-form">
-        <option value="">-- select favourite location --</option>
+        <option value=""> -- select favourite location -- </option>
         {favourites.length >= 0 &&
           favourites.map((location, i) => {
             return (

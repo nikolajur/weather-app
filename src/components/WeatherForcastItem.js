@@ -49,7 +49,7 @@ const WeatherForcastItem = ({ time, temperatureMin, temperatureMax, precipitatio
             className="weather__forecast-rain-icon"
             width="12"
             height="12"
-            src="https://img.icons8.com/material-outlined/24/ffffff/blur.png"
+            src="https://img.icons8.com/material-outlined/24/023047/blur.png"
             alt="blur"
           />
           {precipitation}&nbsp;mm

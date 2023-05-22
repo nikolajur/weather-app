@@ -37,12 +37,12 @@ const Content = () => {
     <div className="content">
       {showInstructions && <Instructions />}
 
-      {showIsLoading && <p className="loading">Waiting for data...</p>}
+      {showIsLoading && <p className="content__text">Waiting for data...</p>}
 
       {showMoreResults && (
         <>
-          <p>I found more than 1 result.</p>
-          <p>Please select the searched location on the map.</p>
+          <p className="content__text">I found more than 1 result.</p>
+          <p className="content__text">Please select the searched location on the map.</p>
         </>
       )}
 
@@ -50,7 +50,11 @@ const Content = () => {
 
       {showWeatherInfo && <WeatherGraphics />}
 
-      {showWeatherError && <p>I can't get the weather info at the moment, please try it later.</p>}
+      {showWeatherError && (
+        <p className="content__text">
+          I can't get the weather info at the moment, please try it later.
+        </p>
+      )}
     </div>
   );
 };

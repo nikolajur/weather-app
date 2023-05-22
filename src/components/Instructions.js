@@ -10,7 +10,7 @@ const Instructions = () => {
         <span>
           <img
             className="content__position-icon"
-            src="https://img.icons8.com/ios-filled/50/ffffff/center-direction.png"
+            src="https://img.icons8.com/ios-filled/50/fafaf8/center-direction.png"
             alt="position-icon"
           />
         </span>

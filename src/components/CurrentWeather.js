@@ -72,7 +72,7 @@ const CurrentWeather = () => {
           className="weather__wind-arrow"
           width="19"
           height="19"
-          src={`https://img.icons8.com/ios-filled/50/ffffff/${windDirection}.png`}
+          src={`https://img.icons8.com/ios-filled/50/023047/${windDirection}.png`}
           alt={windDirection}
         />
       </div>
