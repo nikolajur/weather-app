@@ -9,8 +9,8 @@ const DEFAULT_LOCATION_STATE = {
   weather: null,
   isLoading: { position: null, weather: null },
   error: { position: null, weather: null },
-  getCoordinatates: () => {},
-  fetchWeather: () => {}
+  getCoordinatates: () => {} /* ,
+  fetchWeather: () => {} */
 };
 
 const LocationProvider = ({ children }) => {
@@ -22,7 +22,7 @@ const LocationProvider = ({ children }) => {
   const [weatherError, setWeatherError] = useState(null);
 
   // weather data
-  const fetchWeatherAPI = useCallback(async (lat, lng) => {
+  const fetchCurrentWeatherAPI = useCallback(async (lat, lng) => {
     setWeatherIsLoading(true);
     try {
       console.log("called get weather from ctx");
@@ -85,7 +85,7 @@ const LocationProvider = ({ children }) => {
               /*  null, */
               true
             );
-            fetchWeatherAPI(position.coords.latitude, position.coords.longitude);
+            fetchCurrentWeatherAPI(position.coords.latitude, position.coords.longitude);
           },
           (error) => {
             onPositionError("I can't get the device position.");
@@ -104,8 +104,8 @@ const LocationProvider = ({ children }) => {
               // onPositionFound([{ lat: data[0].lat, lng: data[0].lon }], false);
               onPositionFound([{ lat: data[0].latitude, lng: data[0].longitude }], false);
 
-              // fetchWeatherAPI(data[0].lat, data[0].lon);
-              fetchWeatherAPI(data[0].latitude, data[0].longitude);
+              // fetchCurrentWeatherAPI(data[0].lat, data[0].lon);
+              fetchCurrentWeatherAPI(data[0].latitude, data[0].longitude);
             }
             if (data.length > 1) {
               console.log("array length > 1");
@@ -139,12 +139,12 @@ const LocationProvider = ({ children }) => {
         console.log("selecting location");
         onPositionFound([{ lat: coordinates[0], lng: coordinates[1] }], false);
         console.log(coordinates[0], coordinates[1]);
-        fetchWeatherAPI(coordinates[0], coordinates[1]);
+        fetchCurrentWeatherAPI(coordinates[0], coordinates[1]);
       } else {
         return;
       }
     },
-    [fetchWeatherAPI, onPositionFound, onPositionError]
+    [fetchCurrentWeatherAPI, onPositionFound, onPositionError]
   );
 
   useEffect(() => {
@@ -160,8 +160,8 @@ const LocationProvider = ({ children }) => {
         weather: locationInfo.weather,
         isLoading: { position: positionIsLoading, weather: weatherIsLoading },
         error: { position: positionError, weather: weatherError },
-        getCoordinates: getCoordinatates,
-        fetchWeatherAPI: fetchWeatherAPI
+        getCoordinates: getCoordinatates /* ,
+        fetchCurrentWeatherAPI: fetchCurrentWeatherAPI */
       }}
     >
       {children}
