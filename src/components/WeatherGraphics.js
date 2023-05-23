@@ -58,38 +58,41 @@ const WeatherGraphics = () => {
         </>
       )}
 
+      {!showCurrentWeather && (
+        <div className="weather__back">
+          <p className="weather__back-text">current</p>
+          <p className="weather__back-text">weather</p>
+          <button className="weather__back-btn" onClick={onBackBtnHandler}>
+            <img
+              className="weather__back-icon"
+              src="https://img.icons8.com/ios-filled/50/023047/less-than.png"
+              alt="show-current-weather"
+            />
+          </button>
+        </div>
+      )}
+
       {weatherForecast.data && !showCurrentWeather && (
-        <>
-          <div className="weather__back">
-            <p className="weather__back-text">current</p>
-            <p className="weather__back-text">weather</p>
-            <button className="weather__back-btn" onClick={onBackBtnHandler}>
-              <img
-                className="weather__back-icon"
-                src="https://img.icons8.com/ios-filled/50/023047/less-than.png"
-                alt="show-current-weather"
+        <div className="weather__forecast">
+          {weatherForecast.data.map((day, i) => {
+            return (
+              <WeatherForcastItem
+                key={i}
+                time={day.time}
+                temperatureMax={day.temperatureMax}
+                temperatureMin={day.temperatureMin}
+                precipitation={day.precipitation}
+                code={day.code}
               />
-            </button>
-          </div>
-          <div className="weather__forecast">
-            {weatherForecast.map((day, i) => {
-              return (
-                <WeatherForcastItem
-                  key={i}
-                  time={day.time}
-                  temperatureMax={day.temperatureMax}
-                  temperatureMin={day.temperatureMin}
-                  precipitation={day.precipitation}
-                  code={day.code}
-                />
-              );
-            })}
-          </div>
-        </>
+            );
+          })}
+        </div>
       )}
 
       {weatherForecast.error && !showCurrentWeather && (
-        <p className="content__text">{weatherForecast.error}</p>
+        <div className="weather__forecast-error">
+          <p className="content__text">{weatherForecast.error}</p>
+        </div>
       )}
     </div>
   );

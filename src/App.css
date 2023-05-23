@@ -368,6 +368,10 @@ body {
   margin-right: 0.25rem;
 }
 
+.weather__forecast-error {
+  flex-grow: 1;
+}
+
 footer {
   color: var(--var-color-white);
   text-align: center;

@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const getWeatherForecast = async (lat, lng) => {
   console.log("get weather forecast");
-  const url = `https://api.open-meteo.com/v1/forecst?latitude=${lat}&longitude=${lng}&timezone=auto&daily=temperature_2m_max&daily=temperature_2m_min&daily=precipitation_sum&daily=weathercode`;
+  const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}&timezone=auto&daily=temperature_2m_max&daily=temperature_2m_min&daily=precipitation_sum&daily=weathercode`;
 
   // console.log(lat, lng);
   const weatherForecast = async () => {

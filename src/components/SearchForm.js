@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useEffect } from "react";
+import React, { useContext, useRef } from "react";
 import LocationContext from "../store/location-context";
 
 const SearchForm = () => {
@@ -6,12 +6,12 @@ const SearchForm = () => {
   const inputRef = useRef();
   console.log(ctx.isFromDevice);
 
-  useEffect(() => {
+  /* useEffect(() => {
     if (!ctx.isFromDevice) {
       console.log("focus input");
       inputRef.current.focus();
     }
-  }, [ctx.isFromDevice]);
+  }, [ctx.isFromDevice]); */
 
   const onFormSubmit = (e) => {
     e.preventDefault();
