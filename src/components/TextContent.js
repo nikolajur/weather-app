@@ -51,9 +51,7 @@ const Content = () => {
       {showWeatherInfo && <WeatherGraphics />}
 
       {showWeatherError && (
-        <p className="content__text">
-          I can't get the weather info at the moment, please try it later.
-        </p>
+        <p className="content__text">I can't get the data at the moment, please try it later.</p>
       )}
     </div>
   );

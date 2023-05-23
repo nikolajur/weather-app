@@ -8,7 +8,7 @@ const WeatherGraphics = () => {
   console.log("render weather graphics");
   const ctx = useContext(LocationContext);
 
-  const [weatherForecast, setWeatherForecast] = useState(null);
+  const [weatherForecast, setWeatherForecast] = useState({ data: null, error: null });
   const [showCurrentWeather, setShowCurrentWeather] = useState(true);
   console.log(weatherForecast);
 
@@ -21,12 +21,16 @@ const WeatherGraphics = () => {
 
       if (weatherForecast) {
         console.log(weatherForecast);
-        setWeatherForecast(weatherForecast);
+        setWeatherForecast({ data: weatherForecast, error: null });
         setShowCurrentWeather(false);
       }
     } catch (error) {
       console.log(error);
-      // error handler
+      setWeatherForecast({
+        data: null,
+        error: "I can't get the data at the moment, please try it later."
+      });
+      setShowCurrentWeather(false);
     }
   };
 
@@ -53,7 +57,8 @@ const WeatherGraphics = () => {
           </div>
         </>
       )}
-      {weatherForecast && !showCurrentWeather && (
+
+      {weatherForecast.data && !showCurrentWeather && (
         <>
           <div className="weather__back">
             <p className="weather__back-text">current</p>
@@ -81,6 +86,10 @@ const WeatherGraphics = () => {
             })}
           </div>
         </>
+      )}
+
+      {weatherForecast.error && !showCurrentWeather && (
+        <p className="content__text">{weatherForecast.error}</p>
       )}
     </div>
   );
