@@ -1,5 +1,7 @@
 // import { useContext } from "react";
 // import LocationContext from "./store/location-context";
+import { motion } from "framer-motion";
+import { firstRenderVariants } from "./helpers/animation-variants";
 import Header from "./components/Header";
 import Search from "./components/Search";
 // import Favourites from "./components/Favourites";
@@ -17,14 +19,13 @@ function App() {
   console.log("render app");
 
   return (
-    <div className="app">
+    <motion.div className="app" variants={firstRenderVariants} initial="hidden" animate="visible">
       <Header />
       <Search />
-      {/* <Favourites /> */}
       <TextContent />
       <Map />
       <Footer />
-    </div>
+    </motion.div>
   );
 }
 
