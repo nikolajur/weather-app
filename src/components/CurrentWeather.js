@@ -5,10 +5,8 @@ import CurrentWeatherIcon from "./CurrentWeatherIcon";
 const CurrentWeather = () => {
   const ctx = useContext(LocationContext);
 
-  const isRaining =
-    ctx.weather?.rain; /* && ["09d", "09n", "10d", "10n"].includes(ctx.weather.weather[0].icon) */
+  const isRaining = ctx.weather?.rain;
 
-  // console.log(ctx.weather.wind.deg);
   let windDirection;
   if (ctx.weather.wind.deg >= 337 || ctx.weather.wind.deg < 22) {
     windDirection = "long-arrow-down";
@@ -47,7 +45,7 @@ const CurrentWeather = () => {
           </p>
         )}
       </div>
-      <p className="weather__temeprature">{Math.round(ctx.weather.main.temp)}°C</p>
+      <p className="weather__temperature">{Math.round(ctx.weather.main.temp)}°C</p>
       <p className="weather__property">
         feels like:
         <span className="weather__property-value">

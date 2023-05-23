@@ -7,47 +7,23 @@
 
 body {
   width: 100%;
-  /*  height: 100vh; */
   padding: 1.5rem;
   font-family: "Lato", sans-serif;
-  /* background-color: #1d3461; */
-  /* background-color: #1f487e; */
-  /* background-color: #7293a0; */
-  /* background-color: #0b7189; */
-  /* background-color: #b5bec6; */
-  /* background-color: #47a8bd; */
-  /* background-color: #adacb5; */
   background-color: #219ebc;
   overflow: auto;
-  /* background-color: #00a5cf; */
 }
 
 #root {
   height: 100vh;
 }
 :root {
-  /* --var-color-white: #f6f0ed; */
-  /* --var-color-white: #f0eff4; */
-  /* --var-color-white: #f3efe0; */
-  /* --var-color-white: #e3e4db; */
-  /* --var-color-white: #c6e0ff; */
-  /* --var-color-white: #ccdbdc; */
-  /* --var-color-white: #f5efed; */
-  /* --var-color-white: #2f2f2f; */
-  /* --var-color-white: #210b2c; */
-  /* --var-color-white: #333333; */
-  /* --var-color-white: #353531; */
-  /* --var-color-white: #3c3744; */
-  /* --var-color-white: #0b7189; */
-  /* --var-color-white: #c7dbe6; */
-  /* --var-color-white: #161b33; */
-  --var-color-white: #023047;
-  /* --var-color-white: #004e64; */
+  --var-color-dark: #023047;
+  --var-color-white: #fafaf8;
+  --var-color-gray: #d5dadc;
 }
 
 .app {
   display: flex;
-
   flex-direction: column;
   width: 100%;
   height: 100%;
@@ -70,7 +46,7 @@ body {
 .header__title {
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--var-color-white);
+  color: var(--var-color-dark);
 }
 
 .search {
@@ -94,56 +70,46 @@ body {
   font-family: inherit;
   border: none;
   border-radius: 0.25rem;
-  background-color: #fafaf8;
+  background-color: var(--var-color-white);
   flex-grow: 1;
-  min-width: none;
   max-width: 15rem;
   margin-right: 0.75rem;
   padding: 0.25rem 0.25rem 0.25rem 0.5rem;
-  /* padding-left: 0.5rem; */
+}
+
+.search__location-form__btn,
+.favourites-form-btn,
+.search__position-btn {
+  border: 1px solid var(--var-color-gray);
+  border-radius: 0.25rem;
+  background-color: var(--var-color-gray);
+  cursor: pointer;
 }
 
 .search__location-form__btn,
 .favourites-form-btn {
   font-size: 1rem;
   font-family: inherit;
-  border: 1px solid #d5dadc;
-  border-radius: 0.25rem;
   padding: 0.25rem 0.5rem;
   margin-right: 0.75rem;
-  cursor: pointer;
   height: 1.75rem;
-  background-color: #d5dadc;
-  color: var(--var-color-white);
+  color: var(--var-color-dark);
+}
+.search__position-btn {
+  padding: 0.25rem;
+  margin: 0.5rem 0;
 }
 
 .search__location-form__btn:hover,
-.favourites-form-btn:hover {
-  border: 1px solid var(--var-color-white);
-}
-
-.search__position-btn {
-  padding: 0.25rem;
-  border: 1px solid #d5dadc;
-  border-radius: 0.25rem;
-  margin: 0.5rem 0;
-  cursor: pointer;
-  background-color: #d5dadc;
-}
+.favourites-form-btn:hover,
 .search__position-btn:hover {
-  border: 1px solid var(--var-color-white);
+  border: 1px solid var(--var-color-dark);
 }
 
 .search__position-btn__icon {
   width: 1.25rem;
   height: 1.25rem;
   vertical-align: middle;
-}
-
-.search__position-tooltip {
-  margin-left: 0.75rem;
-  color: var(--var-color-white);
-  font-size: 0.75rem;
 }
 
 .favourites {
@@ -166,12 +132,14 @@ body {
   border-radius: 0.25rem;
   height: 1.75rem;
   margin-right: 0.75rem;
-  color: var(--var-color-white);
+  color: var(--var-color-dark);
+  background-color: var(--var-color-white);
 }
 
 .favourites-form option {
   font-family: inherit;
   cursor: pointer;
+  color: var(--var-color-dark);
 }
 
 .favourites-form-btn {
@@ -188,6 +156,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: var(--var-color-dark);
 }
 
 .content__text {
@@ -207,7 +176,7 @@ body {
   width: 1.5rem;
   height: 1.5rem;
   vertical-align: middle;
-  border: 1px solid #fafaf8;
+  border: 1px solid var(--var-color-white);
   border-radius: 0.25rem;
   margin: 0 0.25rem;
   padding: 0.25rem;
@@ -217,10 +186,6 @@ body {
   height: 100%;
   width: 100%;
   text-align: center;
-  color: var(--var-color-white);
-
-  /* overflow-y: scroll; */
-  /* height: 20vh; */
 }
 
 .weather__now {
@@ -242,12 +207,10 @@ body {
 .weather__next-text,
 .weather__back-text {
   font-size: 0.75rem;
-  /* margin-bottom: 0.5rem; */
 }
 .weather__next-btn,
 .weather__back-btn {
-  /* padding: 0.25rem; */
-  border: 1px solid var(--var-color-white);
+  border: 1px solid var(--var-color-dark);
   background-color: transparent;
   border-radius: 0.25rem;
   margin: 0.5rem 0;
@@ -256,18 +219,11 @@ body {
 
 .weather__next-btn:hover,
 .weather__back-btn:hover {
-  border: 1px solid #fafaf8;
+  border: 1px solid var(--var-color-white);
   transition: all 0.3s ease-out;
 }
 .weather__next-icon,
 .weather__back-icon {
-  /*  width: 1.75rem;
-  height: 1.75rem;
-  border: 1px solid white;
-  border-radius: 0.25rem;
-  margin: 0 0.25rem;
-  padding: 0.25rem; */
-
   width: 1.75rem;
   height: 1.75rem;
   vertical-align: middle;
@@ -279,8 +235,6 @@ body {
   justify-content: center;
   align-items: baseline;
   flex-wrap: wrap;
-
-  color: var(--var-color-white);
 }
 
 .weather__location-name {
@@ -297,7 +251,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: var(--var-color-white);
 }
 
 .weather__description-text {
@@ -315,20 +268,14 @@ body {
 
 .weather__property {
   font-size: 1rem;
-  /*  display: flex;
-  justify-content: center;
-  align-items: center; */
-  /* line-height: 1.25; */
 }
 
 .weather__property-value {
   font-weight: 700;
   font-size: 1rem;
-  /* vertical-align: middle; */
-  color: var(--var-color-white);
 }
 
-.weather__temeprature {
+.weather__temperature {
   font-size: 1.25rem;
   font-weight: 700;
   margin-bottom: 0.25rem;
@@ -342,8 +289,6 @@ body {
 }
 
 .weather__wind-arrow {
-  /* width: 1rem;
-  height: 1rem; */
   margin-left: 0.25rem;
 }
 
@@ -367,7 +312,7 @@ body {
 
 .weather__forecast-item {
   width: 6rem;
-  border: 1px solid var(--var-color-white);
+  border: 1px solid var(--var-color-dark);
   flex-shrink: 0;
   padding: 0.25rem;
 }
@@ -381,11 +326,10 @@ body {
 }
 
 footer {
-  color: var(--var-color-white);
+  color: var(--var-color-dark);
   text-align: center;
   font-size: 0.75rem;
   margin: 1rem 0 0.5rem 0;
-
   line-height: 1.5;
 }
 
@@ -397,20 +341,19 @@ footer {
 }
 .footer__credits p {
   margin: 0 0.25rem;
-  /* color: #fafaf8; */
 }
 
 footer a {
-  color: #fafaf8;
+  color: var(--var-color-white);
 }
 
 footer a:active {
   font-weight: 700;
-  color: #fafaf8;
+  color: var(--var-color-white);
 }
 
 footer a:visited {
-  color: #fafaf8;
+  color: var(--var-color-white);
 }
 
 @media (min-width: 880px) {
