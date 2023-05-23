@@ -352,6 +352,7 @@ body {
   flex-wrap: nowrap;
   justify-content: flex-start;
   align-items: center;
+  width: 100%;
 }
 
 .weather__forecast-data {
