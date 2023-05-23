@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import LocationContext from "../store/location-context";
 import { getWeatherForecast } from "../helpers/getWeatherForecast";
+import { motion } from "framer-motion";
 import CurrentWeather from "./CurrentWeather";
 import WeatherForcastItem from "./WeatherForcastItem";
 
@@ -41,7 +42,7 @@ const WeatherGraphics = () => {
   return (
     <div className="weather">
       {showCurrentWeather && (
-        <>
+        <div className="weather__current">
           <CurrentWeather />
           <div className="weather__next">
             <p className="weather__next-text">next</p>
@@ -55,45 +56,46 @@ const WeatherGraphics = () => {
               />
             </button>
           </div>
-        </>
-      )}
-
-      {!showCurrentWeather && (
-        <div className="weather__back">
-          <p className="weather__back-text">current</p>
-          <p className="weather__back-text">weather</p>
-          <button className="weather__back-btn" onClick={onBackBtnHandler}>
-            <img
-              className="weather__back-icon"
-              src="https://img.icons8.com/ios-filled/50/023047/less-than.png"
-              alt="show-current-weather"
-            />
-          </button>
         </div>
       )}
-
-      {weatherForecast.data && !showCurrentWeather && (
-        <div className="weather__forecast">
-          {weatherForecast.data.map((day, i) => {
-            return (
-              <WeatherForcastItem
-                key={i}
-                time={day.time}
-                temperatureMax={day.temperatureMax}
-                temperatureMin={day.temperatureMin}
-                precipitation={day.precipitation}
-                code={day.code}
+      <div className="weather__forecast">
+        {!showCurrentWeather && (
+          <div className="weather__back">
+            <p className="weather__back-text">current</p>
+            <p className="weather__back-text">weather</p>
+            <button className="weather__back-btn" onClick={onBackBtnHandler}>
+              <img
+                className="weather__back-icon"
+                src="https://img.icons8.com/ios-filled/50/023047/less-than.png"
+                alt="show-current-weather"
               />
-            );
-          })}
-        </div>
-      )}
+            </button>
+          </div>
+        )}
 
-      {weatherForecast.error && !showCurrentWeather && (
-        <div className="weather__forecast-error">
-          <p className="content__text">{weatherForecast.error}</p>
-        </div>
-      )}
+        {weatherForecast.data && !showCurrentWeather && (
+          <div className="weather__forecast-data">
+            {weatherForecast.data.map((day, i) => {
+              return (
+                <WeatherForcastItem
+                  key={i}
+                  time={day.time}
+                  temperatureMax={day.temperatureMax}
+                  temperatureMin={day.temperatureMin}
+                  precipitation={day.precipitation}
+                  code={day.code}
+                />
+              );
+            })}
+          </div>
+        )}
+
+        {weatherForecast.error && !showCurrentWeather && (
+          <div className="weather__forecast-error">
+            <p className="content__text">{weatherForecast.error}</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
