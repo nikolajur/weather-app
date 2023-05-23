@@ -16,8 +16,9 @@ const SearchForm = () => {
   const onFormSubmit = (e) => {
     e.preventDefault();
     console.log("get city search");
-    const searchedText = inputRef.current?.value;
+    const searchedText = inputRef.current.value;
     ctx.getCoordinates("search", searchedText, null);
+    inputRef.current.value = "";
   };
 
   return (

@@ -18,6 +18,7 @@ body {
   /* background-color: #47a8bd; */
   /* background-color: #adacb5; */
   background-color: #219ebc;
+  overflow: auto;
   /* background-color: #00a5cf; */
 }
 
@@ -182,7 +183,7 @@ body {
 .content {
   margin: 0.5rem 0 1rem 0;
   height: auto;
-  min-height: 9.5rem;
+  min-height: 9.75rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -200,11 +201,11 @@ body {
 }
 
 .content__instructions-text {
-  line-height: 1.75rem;
+  line-height: 1.5rem;
 }
 .content__position-icon {
-  width: 1.75rem;
-  height: 1.75rem;
+  width: 1.5rem;
+  height: 1.5rem;
   vertical-align: middle;
   border: 1px solid #fafaf8;
   border-radius: 0.25rem;
