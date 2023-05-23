@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Marker, Tooltip } from "react-leaflet";
 import LocationContext from "../store/location-context";
-import { circleIcon } from "../assets/circleIcon";
+import { circleIcon } from "../helpers/circleIcon";
 
 const MarkerWithTooltip = ({ position, labelName, labelCountry }) => {
   const ctx = useContext(LocationContext);

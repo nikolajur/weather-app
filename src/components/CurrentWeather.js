@@ -23,7 +23,7 @@ const CurrentWeather = () => {
   } else if (ctx.weather.wind.deg >= 202 && ctx.weather.wind.deg < 247) {
     windDirection = "up-right-arrow";
   } else if (ctx.weather.wind.deg >= 247 && ctx.weather.wind.deg < 292) {
-    windDirection = "long-arrow-right.";
+    windDirection = "long-arrow-right";
   } else if (ctx.weather.wind.deg >= 292 && ctx.weather.wind.deg < 337) {
     windDirection = "down-right-arrow";
   }
